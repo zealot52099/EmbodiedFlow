@@ -1,0 +1,19 @@
+{
+  "status": "success",
+  "timestamp": "2026-09-10T19:11:05+08:00",
+  "command": ".\\scripts\\eval_pi05_libero_lerobot.ps1 -PolicyPath \".\\outputs\\pi05_libero_task10_4090_utf8\\checkpoints\\030000\\pretrained_model\" -Tasks \"libero_goal\" -TaskIds \"[8]\" -Episodes 10 -OutputDir \".\\eval_logs\\pi05_libero_task10_goal8_10ep_rerun_20260910\"",
+  "policy_path": "outputs\\pi05_libero_task10_4090_utf8\\checkpoints\\030000\\pretrained_model",
+  "task_group": "libero_goal",
+  "task_id": 8,
+  "episodes": 10,
+  "successes": 10,
+  "success_rate_percent": 100.0,
+  "avg_sum_reward": 1.0,
+  "avg_max_reward": 1.0,
+  "eval_seconds": 110.14605832099915,
+  "eval_seconds_per_episode": 11.014605832099914,
+  "full_eval_info": "eval_logs\\pi05_libero_task10_goal8_10ep_rerun_20260910\\eval_info.json",
+  "video_dir": "eval_logs\\pi05_libero_task10_goal8_10ep_rerun_20260910\\videos\\libero_goal_8",
+  "video_count": 10,
+  "next_recommended_step": "Add an RLinf PPO/GRPO integration scaffold or run a broader LIBERO suite evaluation before RL."
+}

@@ -9,7 +9,7 @@ dataset registry, adapter-ready postprocessing, pi0.5/pi0.7-ready training workf
 
 ## Current Stage
 
-Implementation stage: v1 smoke infrastructure is in place and validated against the local LIBERO dataset and pi0.5 smoke training path.
+Implementation stage: v1 smoke infrastructure and pi0.5 BC evaluation are validated against the local LIBERO task.
 
 ## Completed
 
@@ -29,6 +29,9 @@ Implementation stage: v1 smoke infrastructure is in place and validated against 
 - Added `PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION=python` to smoke/training scripts to avoid protobuf/TensorFlow import incompatibility in fallback environments.
 - Added checkpoint-existence fallback for 1-step pi0.5 smoke training: if `lerobot-train` exits nonzero after writing the expected checkpoint, the run is recorded as completed with a teardown warning.
 - Ran full smoke: registry validation, postprocess QC, and pi0.5 1-step train via `artifacts\grasp_pipeline\runs\smoke_full_final`.
+- Ran pi0.5 LIBERO BC evaluation on `libero_goal` / `task_id=8` for 10 episodes.
+- Confirmed BC eval result: 10/10 successes, 100.0% success rate, avg sum reward 1.0, avg max reward 1.0.
+- Added lightweight eval summary: `artifacts\grasp_pipeline\runs\eval_pi05_goal8_20260910\eval_summary.json`.
 
 ## Blockers
 
@@ -40,9 +43,8 @@ Implementation stage: v1 smoke infrastructure is in place and validated against 
 1. Validate dataset registry.
 2. Run LIBERO postprocess smoke and write a timestamped run directory.
 3. Optionally run existing pi0.5 1-step smoke train.
-4. Use existing pi0.5 LIBERO evaluation script for BC success-rate verification.
-5. Add RLinf PPO/GRPO integration only after BC smoke/eval are healthy.
-6. Add Isaac Sim replay export once rollout trajectory format is stable.
+4. Add RLinf PPO/GRPO integration scaffold now that BC smoke/eval are healthy.
+5. Add Isaac Sim replay export once rollout trajectory format is stable.
 
 ## Next Commands
 
@@ -63,6 +65,13 @@ Optional existing pi0.5 eval after smoke:
   -OutputDir ".\eval_logs\pi05_libero_task10_goal8_10ep"
 ```
 
+Recommended next implementation step:
+
+```powershell
+cd E:\projects\robot
+# Add RLinf PPO/GRPO scaffold and a broader LIBERO suite eval wrapper.
+```
+
 ## Artifact Index
 
 - Dataset registry: `data\grasp_dataset_registry.json`
@@ -70,6 +79,8 @@ Optional existing pi0.5 eval after smoke:
 - Run directories: `artifacts\grasp_pipeline\runs\`
 - Prior pi0.5 checkpoint: `outputs\pi05_libero_task10_4090_utf8\checkpoints\030000\pretrained_model`
 - Prior LIBERO eval result: `eval_logs\pi05_libero_task10_goal8_10ep\eval_info.json`
+- Latest BC eval result: `eval_logs\pi05_libero_task10_goal8_10ep_rerun_20260910\eval_info.json`
+- Latest BC eval videos: `eval_logs\pi05_libero_task10_goal8_10ep_rerun_20260910\videos\libero_goal_8\`
 
 ## Failure Log
 
@@ -77,20 +88,13 @@ Optional existing pi0.5 eval after smoke:
 
 ## Latest Verified Run
 
-- Run name: `smoke_full_final`
-- Run directory: `artifacts\grasp_pipeline\runs\smoke_full_final`
+- Run name: `eval_pi05_goal8_20260910`
+- Run directory: `artifacts\grasp_pipeline\runs\eval_pi05_goal8_20260910`
 - Status: success
 - Outputs:
-  - `env.json`
-  - `config.json`
-  - `normalized_schema.json`
-  - `qc_report.json`
-  - `split.json`
-  - `manifest.json`
-  - `orchestrator_config.json`
-  - `orchestrator_manifest.json`
-  - `orchestrator.log`
-  - `run.log`
+  - `eval_summary.json`
+  - full eval info in ignored local output: `eval_logs\pi05_libero_task10_goal8_10ep_rerun_20260910\eval_info.json`
+  - 10 local rollout videos in ignored local output: `eval_logs\pi05_libero_task10_goal8_10ep_rerun_20260910\videos\libero_goal_8\`
 
 ## Verification Commands Run
 
@@ -100,8 +104,13 @@ python .\scripts\grasp_postprocess_pipeline.py --dataset-root .\data\lerobot_lib
 powershell -ExecutionPolicy Bypass -File .\scripts\run_grasp_pipeline_smoke.ps1 -RunName smoke_orchestrator_check -SkipPi05SmokeTrain
 powershell -ExecutionPolicy Bypass -File .\scripts\run_grasp_pipeline_smoke.ps1 -RunName smoke_full_final
 python -m py_compile .\scripts\grasp_dataset_registry.py .\scripts\grasp_postprocess_pipeline.py
+.\scripts\eval_pi05_libero_lerobot.ps1 -PolicyPath ".\outputs\pi05_libero_task10_4090_utf8\checkpoints\030000\pretrained_model" -Tasks "libero_goal" -TaskIds "[8]" -Episodes 10 -OutputDir ".\eval_logs\pi05_libero_task10_goal8_10ep_rerun_20260910"
 ```
 
 ## Training Smoke Note
 
 The final smoke run wrote `outputs\pi05_libero_smoke\checkpoints\000001\training_state\training_step.json` with `step=1`. The underlying `lerobot-train` process still returned exit code 1 after writing the checkpoint, so the wrapper records this as a teardown warning rather than a failed smoke train. Revisit this before long unattended runs, but the import/data/model/optimizer-step path has been validated.
+
+## Latest BC Evaluation Note
+
+The 2026-09-10 rerun loaded `outputs\pi05_libero_task10_4090_utf8\checkpoints\030000\pretrained_model` successfully with all keys loaded. The LIBERO `libero_goal` task 8 evaluation completed 10 episodes with 10 successes, `pc_success=100.0`, `avg_sum_reward=1.0`, and 10 rollout videos written locally.
