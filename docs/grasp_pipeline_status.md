@@ -9,7 +9,7 @@ dataset registry, adapter-ready postprocessing, pi0.5/pi0.7-ready training workf
 
 ## Current Stage
 
-Implementation stage: v1 smoke infrastructure, pi0.5 BC evaluation, and Isaac-ready preview export are validated against the local LIBERO task.
+Implementation stage: v1 smoke infrastructure, single-task pi0.5 BC eval, diverse LIBERO multi-task smoke training/eval, and Isaac-ready preview export are validated.
 
 ## Completed
 
@@ -42,6 +42,13 @@ Implementation stage: v1 smoke infrastructure, pi0.5 BC evaluation, and Isaac-re
 - Attempted Isaac launch and recorded blocker: `artifacts\grasp_pipeline\runs\isaac_launch_20260910\manifest.json`.
 - Added fallback preview renderer: `scripts\render_isaac_preview_fallback.py`.
 - Rendered layout preview PNG: `artifacts\grasp_pipeline\runs\isaac_preview_20260910\put_bowl_on_plate_preview.png`.
+- Added diverse LIBERO task sampler: `scripts\prepare_libero_multitask.py`.
+- Generated diverse LIBERO subset: 40 tasks, 400 episodes, 66248 frames in `artifacts\libero_multitask_diverse`.
+- Fixed pi0.5 train wrapper to call `python -m lerobot.scripts.lerobot_train`, capture stdout/stderr logs, and quote Windows arguments correctly.
+- Ran pi0.5 diverse multi-task smoke training for 1 step: `outputs\pi05_libero_multitask_smoke_fixed\checkpoints\000001\pretrained_model`.
+- Added full `libero_goal` eval wrapper: `scripts\eval_pi05_libero_goal_all.ps1`.
+- Ran `libero_goal` task ids 0-9 with 1 episode per task using the 1-step multi-task smoke checkpoint.
+- Multi-task smoke eval result: 2/10 successes, 20.0% success rate, avg sum reward 0.2. This is a sanity check, not a converged policy result.
 
 ## Blockers
 
@@ -53,8 +60,10 @@ Implementation stage: v1 smoke infrastructure, pi0.5 BC evaluation, and Isaac-re
 1. Validate dataset registry.
 2. Run LIBERO postprocess smoke and write a timestamped run directory.
 3. Optionally run existing pi0.5 1-step smoke train.
-4. Add RLinf PPO/GRPO integration scaffold now that BC smoke/eval are healthy.
-5. Install or locate Isaac Sim, then open the exported USDA scene and replace the handcrafted preview trajectory with rollout-derived transforms.
+4. Run longer pi0.5 multi-task BC training on the 40-task / 400-episode subset.
+5. Evaluate the trained checkpoint on all `libero_goal` task ids with multiple episodes per task.
+6. Add RLinf PPO/GRPO integration scaffold after the multi-task BC checkpoint is stable.
+7. Install or locate Isaac Sim, then open the exported USDA scene and replace the handcrafted preview trajectory with rollout-derived transforms.
 
 ## Next Commands
 
@@ -83,6 +92,15 @@ powershell -ExecutionPolicy Bypass -File .\scripts\run_isaac_preview.ps1
 # Then open artifacts\grasp_pipeline\runs\isaac_preview_20260910\put_bowl_on_plate_preview.usda in Isaac Sim.
 ```
 
+Diverse LIBERO training/eval:
+
+```powershell
+cd E:\projects\robot
+& E:\projects\lerobot_experiment\envs\lerobot312\python.exe .\scripts\prepare_libero_multitask.py --dataset-root .\data\lerobot_libero --output-dir .\artifacts\libero_multitask_diverse --max-episodes-per-task 10 --seed 1000
+powershell -ExecutionPolicy Bypass -File .\scripts\train_pi05_libero_multitask_4090.ps1 -Steps 30000 -BatchSize 1
+powershell -ExecutionPolicy Bypass -File .\scripts\eval_pi05_libero_goal_all.ps1 -PolicyPath ".\outputs\pi05_libero_multitask_4090\checkpoints\030000\pretrained_model" -Episodes 10 -OutputDir ".\eval_logs\pi05_libero_multitask_goal_all_10ep"
+```
+
 If Isaac Sim is installed elsewhere:
 
 ```powershell
@@ -103,6 +121,12 @@ powershell -ExecutionPolicy Bypass -File .\scripts\launch_isaac_preview.ps1 -Isa
 - Latest fallback preview PNG: `artifacts\grasp_pipeline\runs\isaac_preview_20260910\put_bowl_on_plate_preview.png`
 - Latest Isaac preview manifest: `artifacts\grasp_pipeline\runs\isaac_preview_20260910\manifest.json`
 - Latest Isaac launch manifest: `artifacts\grasp_pipeline\runs\isaac_launch_20260910\manifest.json`
+- Diverse LIBERO subset summary: `artifacts\libero_multitask_diverse\summary.md`
+- Diverse LIBERO episode file: `artifacts\libero_multitask_diverse\episodes.txt`
+- Multi-task smoke checkpoint: `outputs\pi05_libero_multitask_smoke_fixed\checkpoints\000001\pretrained_model`
+- Multi-task smoke train summary: `artifacts\grasp_pipeline\runs\multitask_libero_20260910\training_summary.json`
+- Multi-task smoke eval summary: `artifacts\grasp_pipeline\runs\multitask_libero_20260910\eval_summary.json`
+- Multi-task smoke eval videos: `eval_logs\pi05_libero_multitask_smoke_goal_all_1ep_20260910\videos\`
 
 ## Failure Log
 
@@ -110,12 +134,14 @@ powershell -ExecutionPolicy Bypass -File .\scripts\launch_isaac_preview.ps1 -Isa
 
 ## Latest Verified Run
 
-- Run name: `isaac_launch_20260910`
-- Run directory: `artifacts\grasp_pipeline\runs\isaac_launch_20260910`
-- Status: isaac_sim_not_found
+- Run name: `multitask_libero_20260910`
+- Run directory: `artifacts\grasp_pipeline\runs\multitask_libero_20260910`
+- Status: success
 - Outputs:
-  - `manifest.json`
-  - scene remains available at `artifacts\grasp_pipeline\runs\isaac_preview_20260910\put_bowl_on_plate_preview.usda`
+  - `training_summary.json`
+  - `eval_summary.json`
+  - local checkpoint: `outputs\pi05_libero_multitask_smoke_fixed\checkpoints\000001\pretrained_model`
+  - local eval videos: `eval_logs\pi05_libero_multitask_smoke_goal_all_1ep_20260910\videos\`
 
 ## Verification Commands Run
 
@@ -132,6 +158,11 @@ powershell -ExecutionPolicy Bypass -File .\scripts\find_isaac_sim.ps1
 python -m py_compile .\scripts\export_isaac_preview_scene.py .\scripts\isaac_load_preview.py
 powershell -ExecutionPolicy Bypass -File .\scripts\launch_isaac_preview.ps1
 python .\scripts\render_isaac_preview_fallback.py
+& E:\projects\lerobot_experiment\envs\lerobot312\python.exe .\scripts\prepare_libero_multitask.py --dataset-root .\data\lerobot_libero --output-dir .\artifacts\libero_multitask_diverse --max-episodes-per-task 10 --seed 1000
+powershell -ExecutionPolicy Bypass -File .\scripts\run_pi05_multitask_smoke.ps1 -Steps 1 -BatchSize 1 -OutputDir .\outputs\pi05_libero_multitask_smoke_fixed
+.\scripts\eval_pi05_libero_lerobot.ps1 -PolicyPath ".\outputs\pi05_libero_multitask_smoke_fixed\checkpoints\000001\pretrained_model" -Tasks "libero_goal" -TaskIds "[0,1,2,3,4,5,6,7,8,9]" -Episodes 1 -OutputDir ".\eval_logs\pi05_libero_multitask_smoke_goal_all_1ep_20260910"
+python .\scripts\summarize_lerobot_eval.py --eval-info .\eval_logs\pi05_libero_multitask_smoke_goal_all_1ep_20260910\eval_info.json --output .\artifacts\grasp_pipeline\runs\multitask_libero_20260910\eval_summary.json
+python -m py_compile .\scripts\prepare_libero_multitask.py .\scripts\summarize_lerobot_eval.py
 ```
 
 ## Training Smoke Note
@@ -147,3 +178,7 @@ The 2026-09-10 rerun loaded `outputs\pi05_libero_task10_4090_utf8\checkpoints\03
 The 2026-09-10 Isaac preview export succeeded and produced an Isaac-compatible USDA scene for `put the bowl on the plate`, linked to the latest BC eval metrics and 10 local LIBERO videos. A follow-up launch attempt ran `scripts\launch_isaac_preview.ps1`, but no valid Isaac Sim install directory or launcher was found under the standard Omniverse package path. Open `artifacts\grasp_pipeline\runs\isaac_preview_20260910\put_bowl_on_plate_preview.usda` in Isaac Sim after installation, or pass `-IsaacRoot` to the launcher script.
 
 The fallback PNG preview at `artifacts\grasp_pipeline\runs\isaac_preview_20260910\put_bowl_on_plate_preview.png` is not an Isaac render; it is a quick layout check generated from the same scene geometry.
+
+## Latest Multi-task LIBERO Note
+
+The 2026-09-10 diverse LIBERO subset includes all 40 local tasks with up to 10 episodes each. It covers pick/place to plate, basket, drawers, microwave, stove/appliance, and furniture targets. A pi0.5 1-step smoke train completed on 400 episodes / 66248 frames and wrote `outputs\pi05_libero_multitask_smoke_fixed\checkpoints\000001\pretrained_model`. A broader `libero_goal` sanity eval over task ids 0-9 with 1 episode per task produced 2/10 successes (`pc_success=20.0`). Because this checkpoint was trained for only 1 step, the result validates pipeline coverage rather than model convergence.

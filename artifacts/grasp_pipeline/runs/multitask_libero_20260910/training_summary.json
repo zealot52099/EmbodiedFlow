@@ -1,0 +1,17 @@
+{
+  "status": "success",
+  "timestamp": "2026-09-10T20:18:14+08:00",
+  "training_type": "pi0.5 diverse multi-task smoke train",
+  "dataset": "data\\lerobot_libero",
+  "episode_subset": "artifacts\\libero_multitask_diverse\\episodes.txt",
+  "selected_task_count": 40,
+  "selected_episode_count": 400,
+  "selected_frame_count": 66248,
+  "steps": 1,
+  "batch_size": 1,
+  "output_checkpoint": "outputs\\pi05_libero_multitask_smoke_fixed\\checkpoints\\000001\\pretrained_model",
+  "training_step_file": "outputs\\pi05_libero_multitask_smoke_fixed\\checkpoints\\000001\\training_state\\training_step.json",
+  "stdout_log": "artifacts\\training_logs\\pi05_libero_multitask_smoke.stdout.log",
+  "stderr_log": "artifacts\\training_logs\\pi05_libero_multitask_smoke.stderr.log",
+  "note": "This validates that the pi0.5 training stack can load and optimize on a diverse 40-task LIBERO subset. It is not a meaningful converged multi-task policy."
+}

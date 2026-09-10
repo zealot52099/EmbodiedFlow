@@ -1,0 +1,148 @@
+{
+  "status": "success",
+  "timestamp": "2026-09-10T20:29:21",
+  "command": ".\\scripts\\eval_pi05_libero_lerobot.ps1 -PolicyPath .\\outputs\\pi05_libero_multitask_smoke_fixed\\checkpoints\\000001\\pretrained_model -Tasks libero_goal -TaskIds '[0,1,2,3,4,5,6,7,8,9]' -Episodes 1 -OutputDir .\\eval_logs\\pi05_libero_multitask_smoke_goal_all_1ep_20260910",
+  "source_eval_info": "E:\\projects\\robot\\eval_logs\\pi05_libero_multitask_smoke_goal_all_1ep_20260910\\eval_info.json",
+  "overall": {
+    "success_rate_percent": 20.0,
+    "avg_sum_reward": 0.2,
+    "avg_max_reward": 0.2,
+    "n_episodes": 10,
+    "eval_seconds": 333.9700400829315,
+    "eval_seconds_per_episode": 33.39700400829315,
+    "video_count": 10
+  },
+  "per_task": [
+    {
+      "task_group": "libero_goal",
+      "task_id": 0,
+      "episodes": 1,
+      "successes": 0,
+      "success_rate_percent": 0.0,
+      "sum_rewards": [
+        0.0
+      ],
+      "video_paths": [
+        "eval_logs\\pi05_libero_multitask_smoke_goal_all_1ep_20260910\\videos\\libero_goal_0\\eval_episode_0.mp4"
+      ]
+    },
+    {
+      "task_group": "libero_goal",
+      "task_id": 1,
+      "episodes": 1,
+      "successes": 0,
+      "success_rate_percent": 0.0,
+      "sum_rewards": [
+        0.0
+      ],
+      "video_paths": [
+        "eval_logs\\pi05_libero_multitask_smoke_goal_all_1ep_20260910\\videos\\libero_goal_1\\eval_episode_0.mp4"
+      ]
+    },
+    {
+      "task_group": "libero_goal",
+      "task_id": 2,
+      "episodes": 1,
+      "successes": 0,
+      "success_rate_percent": 0.0,
+      "sum_rewards": [
+        0.0
+      ],
+      "video_paths": [
+        "eval_logs\\pi05_libero_multitask_smoke_goal_all_1ep_20260910\\videos\\libero_goal_2\\eval_episode_0.mp4"
+      ]
+    },
+    {
+      "task_group": "libero_goal",
+      "task_id": 3,
+      "episodes": 1,
+      "successes": 0,
+      "success_rate_percent": 0.0,
+      "sum_rewards": [
+        0.0
+      ],
+      "video_paths": [
+        "eval_logs\\pi05_libero_multitask_smoke_goal_all_1ep_20260910\\videos\\libero_goal_3\\eval_episode_0.mp4"
+      ]
+    },
+    {
+      "task_group": "libero_goal",
+      "task_id": 4,
+      "episodes": 1,
+      "successes": 1,
+      "success_rate_percent": 100.0,
+      "sum_rewards": [
+        1.0
+      ],
+      "video_paths": [
+        "eval_logs\\pi05_libero_multitask_smoke_goal_all_1ep_20260910\\videos\\libero_goal_4\\eval_episode_0.mp4"
+      ]
+    },
+    {
+      "task_group": "libero_goal",
+      "task_id": 5,
+      "episodes": 1,
+      "successes": 0,
+      "success_rate_percent": 0.0,
+      "sum_rewards": [
+        0.0
+      ],
+      "video_paths": [
+        "eval_logs\\pi05_libero_multitask_smoke_goal_all_1ep_20260910\\videos\\libero_goal_5\\eval_episode_0.mp4"
+      ]
+    },
+    {
+      "task_group": "libero_goal",
+      "task_id": 6,
+      "episodes": 1,
+      "successes": 0,
+      "success_rate_percent": 0.0,
+      "sum_rewards": [
+        0.0
+      ],
+      "video_paths": [
+        "eval_logs\\pi05_libero_multitask_smoke_goal_all_1ep_20260910\\videos\\libero_goal_6\\eval_episode_0.mp4"
+      ]
+    },
+    {
+      "task_group": "libero_goal",
+      "task_id": 7,
+      "episodes": 1,
+      "successes": 0,
+      "success_rate_percent": 0.0,
+      "sum_rewards": [
+        0.0
+      ],
+      "video_paths": [
+        "eval_logs\\pi05_libero_multitask_smoke_goal_all_1ep_20260910\\videos\\libero_goal_7\\eval_episode_0.mp4"
+      ]
+    },
+    {
+      "task_group": "libero_goal",
+      "task_id": 8,
+      "episodes": 1,
+      "successes": 1,
+      "success_rate_percent": 100.0,
+      "sum_rewards": [
+        1.0
+      ],
+      "video_paths": [
+        "eval_logs\\pi05_libero_multitask_smoke_goal_all_1ep_20260910\\videos\\libero_goal_8\\eval_episode_0.mp4"
+      ]
+    },
+    {
+      "task_group": "libero_goal",
+      "task_id": 9,
+      "episodes": 1,
+      "successes": 0,
+      "success_rate_percent": 0.0,
+      "sum_rewards": [
+        0.0
+      ],
+      "video_paths": [
+        "eval_logs\\pi05_libero_multitask_smoke_goal_all_1ep_20260910\\videos\\libero_goal_9\\eval_episode_0.mp4"
+      ]
+    }
+  ],
+  "note": "Diverse eval sanity check after 1-step multi-task smoke training; not a converged policy."
+}
