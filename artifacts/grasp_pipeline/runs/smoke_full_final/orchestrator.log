@@ -1,0 +1,43 @@
+﻿**********************
+Windows PowerShell transcript start
+Start time: 20260910185545
+Username: MS-VAQSZHFYXFGL\Administrator
+RunAs User: MS-VAQSZHFYXFGL\Administrator
+Configuration Name: 
+Machine: MS-VAQSZHFYXFGL (Microsoft Windows NT 10.0.19044.0)
+Host Application: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -ExecutionPolicy Bypass -File .\scripts\run_grasp_pipeline_smoke.ps1 -RunName smoke_full_final
+Process ID: 35948
+PSVersion: 5.1.19041.2673
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.19041.2673
+BuildVersion: 10.0.19041.2673
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+== Grasp pipeline smoke ==
+Workspace: E:\projects\robot
+Git branch: main
+Python: Python 3.10.12
+GPU: NVIDIA GeForce RTX 4090, 24564 MiB
+DatasetRoot: .\data\lerobot_libero
+ModelRoot: .\models\pi05_libero_base
+RunDir: E:\projects\robot\artifacts\grasp_pipeline\runs\smoke_full_final
+== Step 1: validate dataset registry ==
+
+== Step 2: run postprocess smoke ==
+
+== Step 3: run existing pi0.5 1-step smoke train ==
+Running a Pi 0.5 smoke train. This verifies imports, dataset loading, model loading, and one optimizer step.
+Launching Pi 0.5 expert-only behavior cloning on lerobot/libero.
+BatchSize=1 Steps=1 OutputDir=.\outputs\pi05_libero_smoke
+Using task episode subset from .\artifacts\libero_task10\episodes.txt
+Episodes=[379,422,426,431,433,447,448,451,459,466,481,483,488,507,511,513,522,532,537,549,551,563,568,582,607,615,620,621,626,634,639,642,646,653,655,670,679,708,716,718,726,727,749,750,768,770,801,803,806]
+
+WARNING: lerobot-train exited with code 1 after writing .\outputs\pi05_libero_smoke\checkpoints\000001\training_state\training_step.json. Treating this as a completed run with a teardown warning.
+Smoke pipeline completed.
+**********************
+Windows PowerShell transcript end
+End time: 20260910185546
+**********************

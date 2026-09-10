@@ -1,0 +1,9 @@
+{
+  "dataset_root": ".\\data\\lerobot_libero",
+  "model_root": ".\\models\\pi05_libero_base",
+  "run_root": ".\\artifacts\\grasp_pipeline\\runs",
+  "run_name": "smoke_full_final",
+  "adapter": "lerobot_libero",
+  "max_shards": 5,
+  "seed": 1000
+}

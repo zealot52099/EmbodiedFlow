@@ -1,0 +1,35 @@
+# Large local datasets, model weights, and generated outputs.
+/data/**
+!/data/grasp_dataset_registry.json
+/models/**
+/outputs/**
+/eval_logs/**
+
+# Most artifacts are generated. Keep only the lightweight grasp-pipeline
+# provenance records that let a new session resume the task.
+/artifacts/**
+!/artifacts/grasp_pipeline/
+!/artifacts/grasp_pipeline/**
+
+# Large local media/transcription inputs.
+*.wav
+*.mp4
+*.safetensors
+*.pt
+*.pth
+*.ckpt
+*.bin
+
+# Python and local tool caches.
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.cache/
+
+# OS/editor files.
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/

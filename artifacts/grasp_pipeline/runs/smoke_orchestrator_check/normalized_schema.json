@@ -1,0 +1,40 @@
+{
+  "schema_version": "1.0",
+  "format": "lerobot_style_grasp_episode_manifest",
+  "dataset_type": "teleop",
+  "robot": {
+    "robot_type": "panda",
+    "embodiment_metadata_required": [
+      "robot_type",
+      "action_space",
+      "control_frequency_hz",
+      "camera_layout",
+      "gripper_type"
+    ]
+  },
+  "episode_fields": {
+    "images": [
+      "observation.images.image",
+      "observation.images.image2"
+    ],
+    "state": [
+      "observation.state"
+    ],
+    "action": [
+      "action"
+    ],
+    "language": "task_index -> meta/tasks.parquet",
+    "task_metadata": [
+      "task_index",
+      "episode_index"
+    ],
+    "pi07_ready_context": [
+      "language",
+      "embodiment_metadata",
+      "task_metadata",
+      "subgoal_image",
+      "success_failure_label"
+    ]
+  },
+  "ego_policy": "Ego-only sources may populate language/subgoal/affordance fields, but must not synthesize low-level robot actions."
+}

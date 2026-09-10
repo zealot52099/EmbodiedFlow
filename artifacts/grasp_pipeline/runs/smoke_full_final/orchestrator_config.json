@@ -1,0 +1,13 @@
+﻿{
+    "run_name":  "smoke_full_final",
+    "workspace":  "E:\\projects\\robot",
+    "git_branch":  "main",
+    "python":  "Python 3.10.12",
+    "gpu":  "NVIDIA GeForce RTX 4090, 24564 MiB",
+    "dataset_root":  ".\\data\\lerobot_libero",
+    "model_root":  ".\\models\\pi05_libero_base",
+    "skip_registry":  false,
+    "skip_postprocess":  false,
+    "skip_pi05_smoke_train":  false,
+    "protocol_buffers_python_implementation":  "python"
+}

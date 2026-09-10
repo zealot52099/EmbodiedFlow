@@ -1,0 +1,10 @@
+﻿{
+    "status":  "success",
+    "run_name":  "smoke_full_final",
+    "run_dir":  "E:\\projects\\robot\\artifacts\\grasp_pipeline\\runs\\smoke_full_final",
+    "transcript":  "E:\\projects\\robot\\artifacts\\grasp_pipeline\\runs\\smoke_full_final\\orchestrator.log",
+    "registry_summary":  ".\\artifacts\\grasp_pipeline\\dataset_registry_summary.md",
+    "postprocess_manifest":  "E:\\projects\\robot\\artifacts\\grasp_pipeline\\runs\\smoke_full_final\\manifest.json",
+    "pi05_smoke_checkpoint":  ".\\outputs\\pi05_libero_smoke\\checkpoints\\000001",
+    "next_recommended_command":  ".\\scripts\\eval_pi05_libero_lerobot.ps1 -PolicyPath .\\outputs\\pi05_libero_task10_4090_utf8\\checkpoints\\030000\\pretrained_model -Tasks libero_goal -TaskIds \u0027[8]\u0027 -Episodes 10"
+}

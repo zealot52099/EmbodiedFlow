@@ -1,0 +1,12 @@
+{
+  "status": "success",
+  "run_dir": "E:\\projects\\robot\\artifacts\\grasp_pipeline\\runs\\smoke_full_final",
+  "outputs": {
+    "env": "E:\\projects\\robot\\artifacts\\grasp_pipeline\\runs\\smoke_full_final\\env.json",
+    "config": "E:\\projects\\robot\\artifacts\\grasp_pipeline\\runs\\smoke_full_final\\config.json",
+    "normalized_schema": "E:\\projects\\robot\\artifacts\\grasp_pipeline\\runs\\smoke_full_final\\normalized_schema.json",
+    "qc_report": "E:\\projects\\robot\\artifacts\\grasp_pipeline\\runs\\smoke_full_final\\qc_report.json",
+    "split": "E:\\projects\\robot\\artifacts\\grasp_pipeline\\runs\\smoke_full_final\\split.json"
+  },
+  "next_recommended_command": "powershell -ExecutionPolicy Bypass -File scripts\\run_grasp_pipeline_smoke.ps1 -SkipPostprocess"
+}
