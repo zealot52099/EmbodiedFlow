@@ -9,7 +9,7 @@ dataset registry, adapter-ready postprocessing, pi0.5/pi0.7-ready training workf
 
 ## Current Stage
 
-Implementation stage: v1 smoke infrastructure and pi0.5 BC evaluation are validated against the local LIBERO task.
+Implementation stage: v1 smoke infrastructure, pi0.5 BC evaluation, and Isaac-ready preview export are validated against the local LIBERO task.
 
 ## Completed
 
@@ -32,11 +32,15 @@ Implementation stage: v1 smoke infrastructure and pi0.5 BC evaluation are valida
 - Ran pi0.5 LIBERO BC evaluation on `libero_goal` / `task_id=8` for 10 episodes.
 - Confirmed BC eval result: 10/10 successes, 100.0% success rate, avg sum reward 1.0, avg max reward 1.0.
 - Added lightweight eval summary: `artifacts\grasp_pipeline\runs\eval_pi05_goal8_20260910\eval_summary.json`.
+- Added Isaac-ready USDA preview exporter: `scripts\export_isaac_preview_scene.py`.
+- Added Isaac preview wrapper: `scripts\run_isaac_preview.ps1`.
+- Exported Isaac-ready scene: `artifacts\grasp_pipeline\runs\isaac_preview_20260910\put_bowl_on_plate_preview.usda`.
+- Confirmed current machine does not expose an Isaac Sim launcher under the standard Omniverse install path, so GUI rendering was not launched.
 
 ## Blockers
 
 - pi0.7 is treated as schema-compatible future work until official trainable engineering assets are available.
-- Isaac Sim visualization is planned as a second platform layer; v1 smoke validation uses LIBERO/MuJoCo-compatible local assets.
+- Isaac Sim GUI is not installed or not discoverable at `C:\Users\Administrator\AppData\Local\ov\pkg`; current Isaac result is an offline USD/USDA asset export.
 
 ## Key Path
 
@@ -44,7 +48,7 @@ Implementation stage: v1 smoke infrastructure and pi0.5 BC evaluation are valida
 2. Run LIBERO postprocess smoke and write a timestamped run directory.
 3. Optionally run existing pi0.5 1-step smoke train.
 4. Add RLinf PPO/GRPO integration scaffold now that BC smoke/eval are healthy.
-5. Add Isaac Sim replay export once rollout trajectory format is stable.
+5. Install or locate Isaac Sim, then open the exported USDA scene and replace the handcrafted preview trajectory with rollout-derived transforms.
 
 ## Next Commands
 
@@ -69,7 +73,8 @@ Recommended next implementation step:
 
 ```powershell
 cd E:\projects\robot
-# Add RLinf PPO/GRPO scaffold and a broader LIBERO suite eval wrapper.
+powershell -ExecutionPolicy Bypass -File .\scripts\run_isaac_preview.ps1
+# Then open artifacts\grasp_pipeline\runs\isaac_preview_20260910\put_bowl_on_plate_preview.usda in Isaac Sim.
 ```
 
 ## Artifact Index
@@ -81,6 +86,8 @@ cd E:\projects\robot
 - Prior LIBERO eval result: `eval_logs\pi05_libero_task10_goal8_10ep\eval_info.json`
 - Latest BC eval result: `eval_logs\pi05_libero_task10_goal8_10ep_rerun_20260910\eval_info.json`
 - Latest BC eval videos: `eval_logs\pi05_libero_task10_goal8_10ep_rerun_20260910\videos\libero_goal_8\`
+- Latest Isaac-ready preview scene: `artifacts\grasp_pipeline\runs\isaac_preview_20260910\put_bowl_on_plate_preview.usda`
+- Latest Isaac preview manifest: `artifacts\grasp_pipeline\runs\isaac_preview_20260910\manifest.json`
 
 ## Failure Log
 
@@ -88,13 +95,13 @@ cd E:\projects\robot
 
 ## Latest Verified Run
 
-- Run name: `eval_pi05_goal8_20260910`
-- Run directory: `artifacts\grasp_pipeline\runs\eval_pi05_goal8_20260910`
-- Status: success
+- Run name: `isaac_preview_20260910`
+- Run directory: `artifacts\grasp_pipeline\runs\isaac_preview_20260910`
+- Status: asset_exported
 - Outputs:
-  - `eval_summary.json`
-  - full eval info in ignored local output: `eval_logs\pi05_libero_task10_goal8_10ep_rerun_20260910\eval_info.json`
-  - 10 local rollout videos in ignored local output: `eval_logs\pi05_libero_task10_goal8_10ep_rerun_20260910\videos\libero_goal_8\`
+  - `manifest.json`
+  - `put_bowl_on_plate_preview.usda`
+  - source videos remain in ignored local output: `eval_logs\pi05_libero_task10_goal8_10ep_rerun_20260910\videos\libero_goal_8\`
 
 ## Verification Commands Run
 
@@ -105,6 +112,8 @@ powershell -ExecutionPolicy Bypass -File .\scripts\run_grasp_pipeline_smoke.ps1 
 powershell -ExecutionPolicy Bypass -File .\scripts\run_grasp_pipeline_smoke.ps1 -RunName smoke_full_final
 python -m py_compile .\scripts\grasp_dataset_registry.py .\scripts\grasp_postprocess_pipeline.py
 .\scripts\eval_pi05_libero_lerobot.ps1 -PolicyPath ".\outputs\pi05_libero_task10_4090_utf8\checkpoints\030000\pretrained_model" -Tasks "libero_goal" -TaskIds "[8]" -Episodes 10 -OutputDir ".\eval_logs\pi05_libero_task10_goal8_10ep_rerun_20260910"
+powershell -ExecutionPolicy Bypass -File .\scripts\run_isaac_preview.ps1
+python -m py_compile .\scripts\export_isaac_preview_scene.py
 ```
 
 ## Training Smoke Note
@@ -114,3 +123,7 @@ The final smoke run wrote `outputs\pi05_libero_smoke\checkpoints\000001\training
 ## Latest BC Evaluation Note
 
 The 2026-09-10 rerun loaded `outputs\pi05_libero_task10_4090_utf8\checkpoints\030000\pretrained_model` successfully with all keys loaded. The LIBERO `libero_goal` task 8 evaluation completed 10 episodes with 10 successes, `pc_success=100.0`, `avg_sum_reward=1.0`, and 10 rollout videos written locally.
+
+## Latest Isaac Preview Note
+
+The 2026-09-10 Isaac preview attempt did not launch Isaac Sim because no valid Isaac Sim install directory or launcher was found under the standard Omniverse package path. The fallback export succeeded and produced an Isaac-compatible USDA scene for `put the bowl on the plate`, linked to the latest BC eval metrics and 10 local LIBERO videos. Open `artifacts\grasp_pipeline\runs\isaac_preview_20260910\put_bowl_on_plate_preview.usda` in Isaac Sim after installation.

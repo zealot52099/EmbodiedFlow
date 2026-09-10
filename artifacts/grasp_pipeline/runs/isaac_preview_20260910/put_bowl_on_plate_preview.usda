@@ -1,0 +1,90 @@
+#usda 1.0
+(
+    defaultPrim = "World"
+    metersPerUnit = 1
+    upAxis = "Z"
+)
+
+def Xform "World"
+{
+    def DistantLight "KeyLight"
+    {
+        float inputs:angle = 0.35
+        float inputs:intensity = 550
+        double3 xformOp:rotateXYZ = (-45, 0, -35)
+        uniform token[] xformOpOrder = ["xformOp:rotateXYZ"]
+    }
+
+    def Camera "Camera"
+    {
+        float focalLength = 28
+        double3 xformOp:translate = (1.35, -1.7, 1.15)
+        double3 xformOp:rotateXYZ = (62, 0, 39)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ"]
+    }
+
+    def Xform "TabletopTask"
+    {
+        custom string task = "put the bowl on the plate"
+        custom string source_eval = "LIBERO libero_goal task_id=8"
+
+        def Cube "Table"
+        {
+            double3 xformOp:translate = (0, 0, 0.36)
+            double3 xformOp:scale = (0.75, 0.55, 0.035)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            color3f[] primvars:displayColor = [(0.55, 0.48, 0.38)]
+        }
+
+        def Cylinder "Plate_Target"
+        {
+            double radius = 0.14
+            double height = 0.025
+            double3 xformOp:translate = (0.18, 0.02, 0.42)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+            color3f[] primvars:displayColor = [(0.88, 0.88, 0.82)]
+        }
+
+        def Sphere "Bowl_Start"
+        {
+            double radius = 0.09
+            double3 xformOp:translate = (-0.25, -0.12, 0.47)
+            double3 xformOp:scale = (1, 1, 0.45)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            color3f[] primvars:displayColor = [(0.08, 0.08, 0.09)]
+        }
+
+        def Sphere "Bowl_Placed_Ghost"
+        {
+            double radius = 0.09
+            double3 xformOp:translate = (0.18, 0.02, 0.48)
+            double3 xformOp:scale = (1, 1, 0.45)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            color3f[] primvars:displayColor = [(0.1, 0.32, 0.95)]
+            float primvars:displayOpacity = 0.35
+        }
+
+        def Cube "Gripper_Open"
+        {
+            double3 xformOp:translate = (-0.25, -0.12, 0.66)
+            double3 xformOp:scale = (0.06, 0.025, 0.08)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            color3f[] primvars:displayColor = [(0.12, 0.12, 0.13)]
+        }
+
+        def BasisCurves "EndEffector_Trajectory"
+        {
+            uniform token type = "linear"
+            int[] curveVertexCounts = [5]
+            point3f[] points = [
+                (-0.35, -0.2, 0.72),
+                (-0.25, -0.12, 0.62),
+                (-0.25, -0.12, 0.52),
+                (0.03, -0.05, 0.62),
+                (0.18, 0.02, 0.55)
+            ]
+            color3f[] primvars:displayColor = [(0.1, 0.7, 0.25)]
+            float[] widths = [0.01]
+        }
+    }
+}

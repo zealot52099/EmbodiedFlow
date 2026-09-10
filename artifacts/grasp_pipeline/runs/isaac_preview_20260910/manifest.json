@@ -1,0 +1,39 @@
+{
+  "status": "asset_exported",
+  "timestamp": "2026-09-10T19:22:43",
+  "workspace": "E:\\projects\\robot",
+  "git_branch": "main",
+  "python": "3.10.12 | packaged by Anaconda, Inc. | (main, Jul  5 2023, 19:01:18) [MSC v.1916 64 bit (AMD64)]",
+  "platform": "Windows-10-10.0.19044-SP0",
+  "isaac_sim_detected": false,
+  "isaac_candidates": [],
+  "scene_usda": "E:\\projects\\robot\\artifacts\\grasp_pipeline\\runs\\isaac_preview_20260910\\put_bowl_on_plate_preview.usda",
+  "task": "put the bowl on the plate",
+  "source_eval_info": "E:\\projects\\robot\\eval_logs\\pi05_libero_task10_goal8_10ep_rerun_20260910\\eval_info.json",
+  "source_video_dir": "E:\\projects\\robot\\eval_logs\\pi05_libero_task10_goal8_10ep_rerun_20260910\\videos\\libero_goal_8",
+  "source_video_count": 10,
+  "sample_video": "E:\\projects\\robot\\eval_logs\\pi05_libero_task10_goal8_10ep_rerun_20260910\\videos\\libero_goal_8\\eval_episode_0.mp4",
+  "metrics": {
+    "avg_sum_reward": 1.0,
+    "avg_max_reward": 1.0,
+    "pc_success": 100.0,
+    "n_episodes": 10,
+    "eval_s": 110.14605832099915,
+    "eval_ep_s": 11.014605832099914,
+    "video_paths": [
+      "eval_logs\\pi05_libero_task10_goal8_10ep_rerun_20260910\\videos\\libero_goal_8\\eval_episode_0.mp4",
+      "eval_logs\\pi05_libero_task10_goal8_10ep_rerun_20260910\\videos\\libero_goal_8\\eval_episode_1.mp4",
+      "eval_logs\\pi05_libero_task10_goal8_10ep_rerun_20260910\\videos\\libero_goal_8\\eval_episode_2.mp4",
+      "eval_logs\\pi05_libero_task10_goal8_10ep_rerun_20260910\\videos\\libero_goal_8\\eval_episode_3.mp4",
+      "eval_logs\\pi05_libero_task10_goal8_10ep_rerun_20260910\\videos\\libero_goal_8\\eval_episode_4.mp4",
+      "eval_logs\\pi05_libero_task10_goal8_10ep_rerun_20260910\\videos\\libero_goal_8\\eval_episode_5.mp4",
+      "eval_logs\\pi05_libero_task10_goal8_10ep_rerun_20260910\\videos\\libero_goal_8\\eval_episode_6.mp4",
+      "eval_logs\\pi05_libero_task10_goal8_10ep_rerun_20260910\\videos\\libero_goal_8\\eval_episode_7.mp4",
+      "eval_logs\\pi05_libero_task10_goal8_10ep_rerun_20260910\\videos\\libero_goal_8\\eval_episode_8.mp4",
+      "eval_logs\\pi05_libero_task10_goal8_10ep_rerun_20260910\\videos\\libero_goal_8\\eval_episode_9.mp4"
+    ],
+    "predicted_video_paths": []
+  },
+  "open_in_isaac_sim": "File > Open > select put_bowl_on_plate_preview.usda",
+  "note": "Isaac Sim was not launched by this script; this is an Isaac-ready preview asset export."
+}
