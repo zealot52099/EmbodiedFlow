@@ -1,0 +1,8 @@
+﻿{
+    "status":  "isaac_sim_not_found",
+    "timestamp":  "2026-09-10T19:29:33",
+    "scene":  "E:\\projects\\robot\\artifacts\\grasp_pipeline\\runs\\isaac_preview_20260910\\put_bowl_on_plate_preview.usda",
+    "run_dir":  "E:\\projects\\robot\\artifacts\\grasp_pipeline\\runs\\isaac_launch_20260910",
+    "searched_hint":  "Set ISAAC_SIM_ROOT or pass -IsaacRoot to an Isaac Sim install directory.",
+    "official_install_note":  "Isaac Sim 6.0 Python installation requires Python 3.12; Windows may require long path support."
+}

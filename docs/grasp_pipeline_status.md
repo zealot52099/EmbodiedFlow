@@ -36,11 +36,17 @@ Implementation stage: v1 smoke infrastructure, pi0.5 BC evaluation, and Isaac-re
 - Added Isaac preview wrapper: `scripts\run_isaac_preview.ps1`.
 - Exported Isaac-ready scene: `artifacts\grasp_pipeline\runs\isaac_preview_20260910\put_bowl_on_plate_preview.usda`.
 - Confirmed current machine does not expose an Isaac Sim launcher under the standard Omniverse install path, so GUI rendering was not launched.
+- Added Isaac Sim launcher detection: `scripts\find_isaac_sim.ps1`.
+- Added Isaac Sim scene launcher: `scripts\launch_isaac_preview.ps1`.
+- Added Isaac-side loader script: `scripts\isaac_load_preview.py`.
+- Attempted Isaac launch and recorded blocker: `artifacts\grasp_pipeline\runs\isaac_launch_20260910\manifest.json`.
+- Added fallback preview renderer: `scripts\render_isaac_preview_fallback.py`.
+- Rendered layout preview PNG: `artifacts\grasp_pipeline\runs\isaac_preview_20260910\put_bowl_on_plate_preview.png`.
 
 ## Blockers
 
 - pi0.7 is treated as schema-compatible future work until official trainable engineering assets are available.
-- Isaac Sim GUI is not installed or not discoverable at `C:\Users\Administrator\AppData\Local\ov\pkg`; current Isaac result is an offline USD/USDA asset export.
+- Isaac Sim GUI is not installed or not discoverable at `C:\Users\Administrator\AppData\Local\ov\pkg`; latest launch manifest status is `isaac_sim_not_found`.
 
 ## Key Path
 
@@ -77,6 +83,13 @@ powershell -ExecutionPolicy Bypass -File .\scripts\run_isaac_preview.ps1
 # Then open artifacts\grasp_pipeline\runs\isaac_preview_20260910\put_bowl_on_plate_preview.usda in Isaac Sim.
 ```
 
+If Isaac Sim is installed elsewhere:
+
+```powershell
+cd E:\projects\robot
+powershell -ExecutionPolicy Bypass -File .\scripts\launch_isaac_preview.ps1 -IsaacRoot "D:\path\to\isaac-sim"
+```
+
 ## Artifact Index
 
 - Dataset registry: `data\grasp_dataset_registry.json`
@@ -87,7 +100,9 @@ powershell -ExecutionPolicy Bypass -File .\scripts\run_isaac_preview.ps1
 - Latest BC eval result: `eval_logs\pi05_libero_task10_goal8_10ep_rerun_20260910\eval_info.json`
 - Latest BC eval videos: `eval_logs\pi05_libero_task10_goal8_10ep_rerun_20260910\videos\libero_goal_8\`
 - Latest Isaac-ready preview scene: `artifacts\grasp_pipeline\runs\isaac_preview_20260910\put_bowl_on_plate_preview.usda`
+- Latest fallback preview PNG: `artifacts\grasp_pipeline\runs\isaac_preview_20260910\put_bowl_on_plate_preview.png`
 - Latest Isaac preview manifest: `artifacts\grasp_pipeline\runs\isaac_preview_20260910\manifest.json`
+- Latest Isaac launch manifest: `artifacts\grasp_pipeline\runs\isaac_launch_20260910\manifest.json`
 
 ## Failure Log
 
@@ -95,13 +110,12 @@ powershell -ExecutionPolicy Bypass -File .\scripts\run_isaac_preview.ps1
 
 ## Latest Verified Run
 
-- Run name: `isaac_preview_20260910`
-- Run directory: `artifacts\grasp_pipeline\runs\isaac_preview_20260910`
-- Status: asset_exported
+- Run name: `isaac_launch_20260910`
+- Run directory: `artifacts\grasp_pipeline\runs\isaac_launch_20260910`
+- Status: isaac_sim_not_found
 - Outputs:
   - `manifest.json`
-  - `put_bowl_on_plate_preview.usda`
-  - source videos remain in ignored local output: `eval_logs\pi05_libero_task10_goal8_10ep_rerun_20260910\videos\libero_goal_8\`
+  - scene remains available at `artifacts\grasp_pipeline\runs\isaac_preview_20260910\put_bowl_on_plate_preview.usda`
 
 ## Verification Commands Run
 
@@ -114,6 +128,10 @@ python -m py_compile .\scripts\grasp_dataset_registry.py .\scripts\grasp_postpro
 .\scripts\eval_pi05_libero_lerobot.ps1 -PolicyPath ".\outputs\pi05_libero_task10_4090_utf8\checkpoints\030000\pretrained_model" -Tasks "libero_goal" -TaskIds "[8]" -Episodes 10 -OutputDir ".\eval_logs\pi05_libero_task10_goal8_10ep_rerun_20260910"
 powershell -ExecutionPolicy Bypass -File .\scripts\run_isaac_preview.ps1
 python -m py_compile .\scripts\export_isaac_preview_scene.py
+powershell -ExecutionPolicy Bypass -File .\scripts\find_isaac_sim.ps1
+python -m py_compile .\scripts\export_isaac_preview_scene.py .\scripts\isaac_load_preview.py
+powershell -ExecutionPolicy Bypass -File .\scripts\launch_isaac_preview.ps1
+python .\scripts\render_isaac_preview_fallback.py
 ```
 
 ## Training Smoke Note
@@ -126,4 +144,6 @@ The 2026-09-10 rerun loaded `outputs\pi05_libero_task10_4090_utf8\checkpoints\03
 
 ## Latest Isaac Preview Note
 
-The 2026-09-10 Isaac preview attempt did not launch Isaac Sim because no valid Isaac Sim install directory or launcher was found under the standard Omniverse package path. The fallback export succeeded and produced an Isaac-compatible USDA scene for `put the bowl on the plate`, linked to the latest BC eval metrics and 10 local LIBERO videos. Open `artifacts\grasp_pipeline\runs\isaac_preview_20260910\put_bowl_on_plate_preview.usda` in Isaac Sim after installation.
+The 2026-09-10 Isaac preview export succeeded and produced an Isaac-compatible USDA scene for `put the bowl on the plate`, linked to the latest BC eval metrics and 10 local LIBERO videos. A follow-up launch attempt ran `scripts\launch_isaac_preview.ps1`, but no valid Isaac Sim install directory or launcher was found under the standard Omniverse package path. Open `artifacts\grasp_pipeline\runs\isaac_preview_20260910\put_bowl_on_plate_preview.usda` in Isaac Sim after installation, or pass `-IsaacRoot` to the launcher script.
+
+The fallback PNG preview at `artifacts\grasp_pipeline\runs\isaac_preview_20260910\put_bowl_on_plate_preview.png` is not an Isaac render; it is a quick layout check generated from the same scene geometry.

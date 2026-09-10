@@ -8,6 +8,7 @@
   "isaac_sim_detected": false,
   "isaac_candidates": [],
   "scene_usda": "E:\\projects\\robot\\artifacts\\grasp_pipeline\\runs\\isaac_preview_20260910\\put_bowl_on_plate_preview.usda",
+  "fallback_preview_png": "E:\\projects\\robot\\artifacts\\grasp_pipeline\\runs\\isaac_preview_20260910\\put_bowl_on_plate_preview.png",
   "task": "put the bowl on the plate",
   "source_eval_info": "E:\\projects\\robot\\eval_logs\\pi05_libero_task10_goal8_10ep_rerun_20260910\\eval_info.json",
   "source_video_dir": "E:\\projects\\robot\\eval_logs\\pi05_libero_task10_goal8_10ep_rerun_20260910\\videos\\libero_goal_8",
@@ -35,5 +36,5 @@
     "predicted_video_paths": []
   },
   "open_in_isaac_sim": "File > Open > select put_bowl_on_plate_preview.usda",
-  "note": "Isaac Sim was not launched by this script; this is an Isaac-ready preview asset export."
+  "note": "Isaac Sim was not launched by this script; this is an Isaac-ready preview asset export. The PNG is a lightweight non-Isaac layout preview generated from the same scene geometry."
 }
