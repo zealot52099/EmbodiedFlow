@@ -1,0 +1,29 @@
+{
+  "status": "ready_for_obstacle_data_collection",
+  "timestamp": "2026-09-11T01:55:56+08:00",
+  "run_name": "obstacle_curriculum_20260911",
+  "workspace": "E:\\projects\\robot",
+  "inputs": {
+    "baseline_eval_summary": "artifacts\\grasp_pipeline\\runs\\multitask_libero_full_20260911\\eval_summary.json",
+    "base_checkpoint": "outputs\\pi05_libero_multitask_4090\\checkpoints\\030000\\pretrained_model"
+  },
+  "outputs": {
+    "obstacle_curriculum": "artifacts\\grasp_pipeline\\runs\\obstacle_curriculum_20260911\\obstacle_curriculum.json",
+    "readiness_report": "artifacts\\grasp_pipeline\\runs\\obstacle_curriculum_20260911\\readiness_report.json",
+    "summary": "artifacts\\grasp_pipeline\\runs\\obstacle_curriculum_20260911\\summary.md",
+    "obstacle_injector_smoke_xml": "artifacts\\grasp_pipeline\\runs\\obstacle_curriculum_20260911\\obstacle_injector_smoke.xml"
+  },
+  "curriculum": {
+    "task_group": "libero_goal",
+    "task_ids": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+    "scenario_count": 50,
+    "planned_episodes": 450,
+    "priority_task_ids": [2, 3, 9],
+    "priority_stage_1_episodes": 310
+  },
+  "next_steps": [
+    "Connect the MuJoCo XML obstacle injector to a LIBERO eval runner.",
+    "Collect planner-first expert trajectories for the prioritized scenarios.",
+    "Fine-tune from the 30000-step pi0.5 checkpoint with a 60/40 mix of obstacle expert and original multitask data."
+  ]
+}

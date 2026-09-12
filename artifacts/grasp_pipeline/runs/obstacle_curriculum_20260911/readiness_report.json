@@ -1,0 +1,83 @@
+{
+  "status": "ready_for_obstacle_data_collection",
+  "timestamp": "2026-09-11T01:57:32",
+  "source_eval_summary": "E:\\projects\\robot\\artifacts\\grasp_pipeline\\runs\\multitask_libero_full_20260911\\eval_summary.json",
+  "source_curriculum": "E:\\projects\\robot\\artifacts\\grasp_pipeline\\runs\\obstacle_curriculum_20260911\\obstacle_curriculum.json",
+  "baseline": {
+    "success_rate_percent": 95.0,
+    "avg_sum_reward": 0.95,
+    "avg_max_reward": 0.95,
+    "n_episodes": 100,
+    "eval_seconds": 1426.372879266739,
+    "eval_seconds_per_episode": 14.263728792667388,
+    "video_count": 100
+  },
+  "weak_tasks": [
+    {
+      "task_group": "libero_goal",
+      "task_id": 2,
+      "baseline_success_rate_percent": 80.0,
+      "failed_episode_indices": [
+        0,
+        6
+      ]
+    },
+    {
+      "task_group": "libero_goal",
+      "task_id": 3,
+      "baseline_success_rate_percent": 80.0,
+      "failed_episode_indices": [
+        0,
+        4
+      ]
+    },
+    {
+      "task_group": "libero_goal",
+      "task_id": 9,
+      "baseline_success_rate_percent": 90.0,
+      "failed_episode_indices": [
+        5
+      ]
+    }
+  ],
+  "failed_episode_count": 5,
+  "planned_obstacle_scenarios": 50,
+  "planned_obstacle_episodes": 450,
+  "recommended_stage_1": {
+    "name": "obstacle_bc_data_collection",
+    "priority_task_ids": [
+      2,
+      3,
+      9
+    ],
+    "scenario_count": 36,
+    "episode_count": 310,
+    "expert_source": "motion_planner_first_then_teleop_cleanup"
+  },
+  "recommended_stage_2": {
+    "name": "collision_aware_bc_finetune",
+    "base_checkpoint": "outputs\\pi05_libero_multitask_4090\\checkpoints\\030000\\pretrained_model",
+    "suggested_steps": 10000,
+    "batch_size": 1,
+    "mixing": {
+      "obstacle_expert": 0.6,
+      "original_multitask_subset": 0.4
+    }
+  },
+  "recommended_stage_3": {
+    "name": "rlinf_safety_finetune",
+    "start_after": "collision_aware_bc_finetune reaches >=90% avoidance_success on easy+medium scenarios",
+    "reward_terms": {
+      "task_success": 1.0,
+      "collision": -1.0,
+      "clearance_violation": -0.2,
+      "path_length": -0.01,
+      "action_jerk": -0.01
+    }
+  },
+  "notes": [
+    "Existing full multi-task checkpoint is strong on unmodified LIBERO; obstacle-specific data should focus first on safety generalization.",
+    "Weak unmodified tasks are prioritized because they are more likely to regress under obstacle perturbations.",
+    "This readiness report does not claim robot-obstacle collision measurements until an obstacle injector runner writes telemetry."
+  ]
+}

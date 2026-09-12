@@ -1,0 +1,38 @@
+{
+  "status": "success",
+  "timestamp": "2026-09-11T05:27:32+08:00",
+  "run_name": "obstacle_eval_easy_all_20260911",
+  "workspace": "E:\\projects\\robot",
+  "policy_path": "outputs\\pi05_libero_multitask_4090\\checkpoints\\030000\\pretrained_model",
+  "curriculum": "artifacts\\grasp_pipeline\\runs\\obstacle_curriculum_20260911\\obstacle_curriculum.json",
+  "output_dir": "eval_logs\\pi05_libero_obstacle_goal_easy_all_3ep_clearance",
+  "scenario_selection": {
+    "task_group": "libero_goal",
+    "task_ids": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+    "difficulty": "easy",
+    "scenario_count": 10,
+    "episodes_per_scenario": 3,
+    "total_episodes": 30
+  },
+  "results": {
+    "task_success_rate_percent": 100.0,
+    "safety_success_rate_percent": 100.0,
+    "avoidance_success_rate_percent": 100.0,
+    "collision_episode_count": 0,
+    "clearance_violation_count": 0,
+    "min_clearance_m": 0.5026087068817211,
+    "mean_episode_min_clearance_m": 0.5554172968811604,
+    "video_count": 30,
+    "eval_seconds": 655.9485449790955
+  },
+  "implementation_notes": [
+    "Obstacle injection now happens after each LIBERO rollout reset, using a cached base MuJoCo XML to avoid duplicate obstacle bodies.",
+    "The obstacle eval runner records per-step conservative robot-obstacle clearance from geom center distance minus geom_rbound radii.",
+    "Scenario and overall summaries now include task success, safety success, avoidance success, collision count, clearance violations, min clearance, and mean episode-min clearance."
+  ],
+  "next_steps": [
+    "Run easy obstacle eval with 5 episodes per scenario if a larger confidence sample is needed.",
+    "Run medium obstacle eval over task ids 0-9, starting with one scenario per task and 3 episodes each.",
+    "Collect planner-first obstacle expert trajectories for task ids 2, 3, and 9 before collision-aware fine-tuning."
+  ]
+}

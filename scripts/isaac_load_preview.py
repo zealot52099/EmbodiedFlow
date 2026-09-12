@@ -41,6 +41,10 @@ def main() -> None:
     print("Close the Isaac Sim window when finished inspecting the grasp/place layout.")
     if args.headless:
         simulation_app.close()
+        return
+
+    while simulation_app.is_running():
+        simulation_app.update()
 
 
 if __name__ == "__main__":

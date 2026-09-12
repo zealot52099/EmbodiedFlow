@@ -1,9 +1,9 @@
 ﻿{
     "status":  "launch_requested",
-    "timestamp":  "2026-09-11T16:18:47",
+    "timestamp":  "2026-09-11T13:38:56",
     "isaac_root":  "E:\\envs\\isaacsim61",
-    "launch_mode":  "isaacsim_pip_python",
+    "launch_mode":  "isaacsim_pip",
     "scene":  "E:\\projects\\robot\\artifacts\\grasp_pipeline\\runs\\isaac_preview_20260910\\put_bowl_on_plate_preview.usda",
-    "run_dir":  "E:\\projects\\robot\\artifacts\\grasp_pipeline\\runs\\isaac_launch_20260910",
+    "run_dir":  "E:\\projects\\robot\\artifacts\\grasp_pipeline\\runs\\isaac_launch_20260911",
     "note":  "An Isaac Sim process was started. Inspect the visible Isaac window for the tabletop grasp/place preview."
 }

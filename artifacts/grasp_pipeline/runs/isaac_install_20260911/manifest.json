@@ -1,0 +1,39 @@
+{
+  "status": "installed_requires_user_eula_and_platform_validation",
+  "timestamp": "2026-09-11T13:15:00+08:00",
+  "run_name": "isaac_install_20260911",
+  "workspace": "E:\\projects\\robot",
+  "install_type": "pip_conda",
+  "environment_path": "E:\\envs\\isaacsim61",
+  "launcher": "E:\\envs\\isaacsim61\\Scripts\\isaacsim.exe",
+  "python": "E:\\envs\\isaacsim61\\python.exe",
+  "installed_packages": {
+    "isaacsim": "6.1.0.0",
+    "isaacsim-app": "6.1.0.0",
+    "isaacsim-gui": "6.1.0.0",
+    "isaacsim-core": "6.1.0.0"
+  },
+  "validation": {
+    "find_isaac_sim_ps1_detects_install": true,
+    "pip_check": "No broken requirements found.",
+    "launcher_help_result": "Blocked by NVIDIA Omniverse EULA prompt; OMNI_KIT_ACCEPT_EULA was not set by automation."
+  },
+  "host": {
+    "os": "Windows 10 Pro 2009",
+    "gpu": "NVIDIA GeForce RTX 4090",
+    "driver_version": "560.81",
+    "vram_mib": 24564,
+    "ram_kib": 33289516,
+    "long_paths_enabled": true
+  },
+  "known_risks": [
+    "NVIDIA Isaac Sim 6.x documentation no longer lists Windows 10 as a supported Windows platform.",
+    "The installed NVIDIA driver 560.81 is below the documented Windows recommended driver for Isaac Sim 6.x.",
+    "The Isaac Sim pip dependency set installed torch 2.11.0+cpu in this environment; keep LeRobot training/eval in its existing CUDA environment."
+  ],
+  "next_steps": [
+    "User must review and accept the NVIDIA Omniverse EULA before the launcher can bootstrap.",
+    "Upgrade NVIDIA display driver and preferably run on Windows 11 before relying on GUI/RTX rendering.",
+    "After EULA/platform validation, launch the existing preview with scripts\\launch_isaac_preview.ps1."
+  ]
+}

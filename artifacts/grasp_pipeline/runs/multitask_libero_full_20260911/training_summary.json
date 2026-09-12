@@ -1,0 +1,38 @@
+{
+  "status": "success",
+  "timestamp": "2026-09-11T00:23:22+08:00",
+  "training_type": "pi0.5 diverse multi-task full train",
+  "dataset": "data\\lerobot_libero",
+  "episode_subset": "artifacts\\libero_multitask_diverse\\episodes.txt",
+  "selected_task_count": 40,
+  "selected_episode_count": 400,
+  "selected_frame_count": 66248,
+  "steps": 30000,
+  "batch_size": 1,
+  "save_freq": 5000,
+  "output_checkpoint": "outputs\\pi05_libero_multitask_4090\\checkpoints\\030000\\pretrained_model",
+  "training_step_file": "outputs\\pi05_libero_multitask_4090\\checkpoints\\030000\\training_state\\training_step.json",
+  "stdout_log": "artifacts\\training_logs\\pi05_libero_multitask_4090.stdout.log",
+  "stderr_log": "artifacts\\training_logs\\pi05_libero_multitask_4090.stderr.log",
+  "final_log_metrics": {
+    "loss": 0.217,
+    "grad_norm": 2.262,
+    "learning_rate": 0.0000025,
+    "samples": 30000,
+    "episodes_seen": 181,
+    "epoch": 0.45,
+    "step_seconds": 0.260,
+    "samples_per_second": 4,
+    "memory_gb": 12.85
+  },
+  "checkpoints": [
+    "005000",
+    "010000",
+    "015000",
+    "020000",
+    "025000",
+    "030000",
+    "last"
+  ],
+  "note": "Full 30k-step BC training on the diverse 40-task LIBERO subset completed successfully on the local RTX 4090."
+}

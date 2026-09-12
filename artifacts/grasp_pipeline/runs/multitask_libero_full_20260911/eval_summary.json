@@ -1,0 +1,328 @@
+{
+  "status": "success",
+  "timestamp": "2026-09-11T00:57:33",
+  "command": ".\\scripts\\eval_pi05_libero_goal_all.ps1 -PolicyPath E:\\projects\\robot\\outputs\\pi05_libero_multitask_4090\\checkpoints\\030000\\pretrained_model -Episodes 10 -OutputDir E:\\projects\\robot\\eval_logs\\pi05_libero_multitask_goal_all_10ep",
+  "source_eval_info": "E:\\projects\\robot\\eval_logs\\pi05_libero_multitask_goal_all_10ep\\eval_info.json",
+  "overall": {
+    "success_rate_percent": 95.0,
+    "avg_sum_reward": 0.95,
+    "avg_max_reward": 0.95,
+    "n_episodes": 100,
+    "eval_seconds": 1426.372879266739,
+    "eval_seconds_per_episode": 14.263728792667388,
+    "video_count": 100
+  },
+  "per_task": [
+    {
+      "task_group": "libero_goal",
+      "task_id": 0,
+      "episodes": 10,
+      "successes": 10,
+      "success_rate_percent": 100.0,
+      "sum_rewards": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "video_paths": [
+        "E:\\projects\\robot\\eval_logs\\pi05_libero_multitask_goal_all_10ep\\videos\\libero_goal_0\\eval_episode_0.mp4",
+        "E:\\projects\\robot\\eval_logs\\pi05_libero_multitask_goal_all_10ep\\videos\\libero_goal_0\\eval_episode_1.mp4",
+        "E:\\projects\\robot\\eval_logs\\pi05_libero_multitask_goal_all_10ep\\videos\\libero_goal_0\\eval_episode_2.mp4",
+        "E:\\projects\\robot\\eval_logs\\pi05_libero_multitask_goal_all_10ep\\videos\\libero_goal_0\\eval_episode_3.mp4",
+        "E:\\projects\\robot\\eval_logs\\pi05_libero_multitask_goal_all_10ep\\videos\\libero_goal_0\\eval_episode_4.mp4",
+        "E:\\projects\\robot\\eval_logs\\pi05_libero_multitask_goal_all_10ep\\videos\\libero_goal_0\\eval_episode_5.mp4",
+        "E:\\projects\\robot\\eval_logs\\pi05_libero_multitask_goal_all_10ep\\videos\\libero_goal_0\\eval_episode_6.mp4",
+        "E:\\projects\\robot\\eval_logs\\pi05_libero_multitask_goal_all_10ep\\videos\\libero_goal_0\\eval_episode_7.mp4",
+        "E:\\projects\\robot\\eval_logs\\pi05_libero_multitask_goal_all_10ep\\videos\\libero_goal_0\\eval_episode_8.mp4",
+        "E:\\projects\\robot\\eval_logs\\pi05_libero_multitask_goal_all_10ep\\videos\\libero_goal_0\\eval_episode_9.mp4"
+      ]
+    },
+    {
+      "task_group": "libero_goal",
+      "task_id": 1,
+      "episodes": 10,
+      "successes": 10,
+      "success_rate_percent": 100.0,
+      "sum_rewards": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "video_paths": [
+        "E:\\projects\\robot\\eval_logs\\pi05_libero_multitask_goal_all_10ep\\videos\\libero_goal_1\\eval_episode_0.mp4",
+        "E:\\projects\\robot\\eval_logs\\pi05_libero_multitask_goal_all_10ep\\videos\\libero_goal_1\\eval_episode_1.mp4",
+        "E:\\projects\\robot\\eval_logs\\pi05_libero_multitask_goal_all_10ep\\videos\\libero_goal_1\\eval_episode_2.mp4",
+        "E:\\projects\\robot\\eval_logs\\pi05_libero_multitask_goal_all_10ep\\videos\\libero_goal_1\\eval_episode_3.mp4",
+        "E:\\projects\\robot\\eval_logs\\pi05_libero_multitask_goal_all_10ep\\videos\\libero_goal_1\\eval_episode_4.mp4",
+        "E:\\projects\\robot\\eval_logs\\pi05_libero_multitask_goal_all_10ep\\videos\\libero_goal_1\\eval_episode_5.mp4",
+        "E:\\projects\\robot\\eval_logs\\pi05_libero_multitask_goal_all_10ep\\videos\\libero_goal_1\\eval_episode_6.mp4",
+        "E:\\projects\\robot\\eval_logs\\pi05_libero_multitask_goal_all_10ep\\videos\\libero_goal_1\\eval_episode_7.mp4",
+        "E:\\projects\\robot\\eval_logs\\pi05_libero_multitask_goal_all_10ep\\videos\\libero_goal_1\\eval_episode_8.mp4",
+        "E:\\projects\\robot\\eval_logs\\pi05_libero_multitask_goal_all_10ep\\videos\\libero_goal_1\\eval_episode_9.mp4"
+      ]
+    },
+    {
+      "task_group": "libero_goal",
+      "task_id": 2,
+      "episodes": 10,
+      "successes": 8,
+      "success_rate_percent": 80.0,
+      "sum_rewards": [
+        0.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        0.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "video_paths": [
+        "E:\\projects\\robot\\eval_logs\\pi05_libero_multitask_goal_all_10ep\\videos\\libero_goal_2\\eval_episode_0.mp4",
+        "E:\\projects\\robot\\eval_logs\\pi05_libero_multitask_goal_all_10ep\\videos\\libero_goal_2\\eval_episode_1.mp4",
+        "E:\\projects\\robot\\eval_logs\\pi05_libero_multitask_goal_all_10ep\\videos\\libero_goal_2\\eval_episode_2.mp4",
+        "E:\\projects\\robot\\eval_logs\\pi05_libero_multitask_goal_all_10ep\\videos\\libero_goal_2\\eval_episode_3.mp4",
+        "E:\\projects\\robot\\eval_logs\\pi05_libero_multitask_goal_all_10ep\\videos\\libero_goal_2\\eval_episode_4.mp4",
+        "E:\\projects\\robot\\eval_logs\\pi05_libero_multitask_goal_all_10ep\\videos\\libero_goal_2\\eval_episode_5.mp4",
+        "E:\\projects\\robot\\eval_logs\\pi05_libero_multitask_goal_all_10ep\\videos\\libero_goal_2\\eval_episode_6.mp4",
+        "E:\\projects\\robot\\eval_logs\\pi05_libero_multitask_goal_all_10ep\\videos\\libero_goal_2\\eval_episode_7.mp4",
+        "E:\\projects\\robot\\eval_logs\\pi05_libero_multitask_goal_all_10ep\\videos\\libero_goal_2\\eval_episode_8.mp4",
+        "E:\\projects\\robot\\eval_logs\\pi05_libero_multitask_goal_all_10ep\\videos\\libero_goal_2\\eval_episode_9.mp4"
+      ]
+    },
+    {
+      "task_group": "libero_goal",
+      "task_id": 3,
+      "episodes": 10,
+      "successes": 8,
+      "success_rate_percent": 80.0,
+      "sum_rewards": [
+        0.0,
+        1.0,
+        1.0,
+        1.0,
+        0.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "video_paths": [
+        "E:\\projects\\robot\\eval_logs\\pi05_libero_multitask_goal_all_10ep\\videos\\libero_goal_3\\eval_episode_0.mp4",
+        "E:\\projects\\robot\\eval_logs\\pi05_libero_multitask_goal_all_10ep\\videos\\libero_goal_3\\eval_episode_1.mp4",
+        "E:\\projects\\robot\\eval_logs\\pi05_libero_multitask_goal_all_10ep\\videos\\libero_goal_3\\eval_episode_2.mp4",
+        "E:\\projects\\robot\\eval_logs\\pi05_libero_multitask_goal_all_10ep\\videos\\libero_goal_3\\eval_episode_3.mp4",
+        "E:\\projects\\robot\\eval_logs\\pi05_libero_multitask_goal_all_10ep\\videos\\libero_goal_3\\eval_episode_4.mp4",
+        "E:\\projects\\robot\\eval_logs\\pi05_libero_multitask_goal_all_10ep\\videos\\libero_goal_3\\eval_episode_5.mp4",
+        "E:\\projects\\robot\\eval_logs\\pi05_libero_multitask_goal_all_10ep\\videos\\libero_goal_3\\eval_episode_6.mp4",
+        "E:\\projects\\robot\\eval_logs\\pi05_libero_multitask_goal_all_10ep\\videos\\libero_goal_3\\eval_episode_7.mp4",
+        "E:\\projects\\robot\\eval_logs\\pi05_libero_multitask_goal_all_10ep\\videos\\libero_goal_3\\eval_episode_8.mp4",
+        "E:\\projects\\robot\\eval_logs\\pi05_libero_multitask_goal_all_10ep\\videos\\libero_goal_3\\eval_episode_9.mp4"
+      ]
+    },
+    {
+      "task_group": "libero_goal",
+      "task_id": 4,
+      "episodes": 10,
+      "successes": 10,
+      "success_rate_percent": 100.0,
+      "sum_rewards": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "video_paths": [
+        "E:\\projects\\robot\\eval_logs\\pi05_libero_multitask_goal_all_10ep\\videos\\libero_goal_4\\eval_episode_0.mp4",
+        "E:\\projects\\robot\\eval_logs\\pi05_libero_multitask_goal_all_10ep\\videos\\libero_goal_4\\eval_episode_1.mp4",
+        "E:\\projects\\robot\\eval_logs\\pi05_libero_multitask_goal_all_10ep\\videos\\libero_goal_4\\eval_episode_2.mp4",
+        "E:\\projects\\robot\\eval_logs\\pi05_libero_multitask_goal_all_10ep\\videos\\libero_goal_4\\eval_episode_3.mp4",
+        "E:\\projects\\robot\\eval_logs\\pi05_libero_multitask_goal_all_10ep\\videos\\libero_goal_4\\eval_episode_4.mp4",
+        "E:\\projects\\robot\\eval_logs\\pi05_libero_multitask_goal_all_10ep\\videos\\libero_goal_4\\eval_episode_5.mp4",
+        "E:\\projects\\robot\\eval_logs\\pi05_libero_multitask_goal_all_10ep\\videos\\libero_goal_4\\eval_episode_6.mp4",
+        "E:\\projects\\robot\\eval_logs\\pi05_libero_multitask_goal_all_10ep\\videos\\libero_goal_4\\eval_episode_7.mp4",
+        "E:\\projects\\robot\\eval_logs\\pi05_libero_multitask_goal_all_10ep\\videos\\libero_goal_4\\eval_episode_8.mp4",
+        "E:\\projects\\robot\\eval_logs\\pi05_libero_multitask_goal_all_10ep\\videos\\libero_goal_4\\eval_episode_9.mp4"
+      ]
+    },
+    {
+      "task_group": "libero_goal",
+      "task_id": 5,
+      "episodes": 10,
+      "successes": 10,
+      "success_rate_percent": 100.0,
+      "sum_rewards": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "video_paths": [
+        "E:\\projects\\robot\\eval_logs\\pi05_libero_multitask_goal_all_10ep\\videos\\libero_goal_5\\eval_episode_0.mp4",
+        "E:\\projects\\robot\\eval_logs\\pi05_libero_multitask_goal_all_10ep\\videos\\libero_goal_5\\eval_episode_1.mp4",
+        "E:\\projects\\robot\\eval_logs\\pi05_libero_multitask_goal_all_10ep\\videos\\libero_goal_5\\eval_episode_2.mp4",
+        "E:\\projects\\robot\\eval_logs\\pi05_libero_multitask_goal_all_10ep\\videos\\libero_goal_5\\eval_episode_3.mp4",
+        "E:\\projects\\robot\\eval_logs\\pi05_libero_multitask_goal_all_10ep\\videos\\libero_goal_5\\eval_episode_4.mp4",
+        "E:\\projects\\robot\\eval_logs\\pi05_libero_multitask_goal_all_10ep\\videos\\libero_goal_5\\eval_episode_5.mp4",
+        "E:\\projects\\robot\\eval_logs\\pi05_libero_multitask_goal_all_10ep\\videos\\libero_goal_5\\eval_episode_6.mp4",
+        "E:\\projects\\robot\\eval_logs\\pi05_libero_multitask_goal_all_10ep\\videos\\libero_goal_5\\eval_episode_7.mp4",
+        "E:\\projects\\robot\\eval_logs\\pi05_libero_multitask_goal_all_10ep\\videos\\libero_goal_5\\eval_episode_8.mp4",
+        "E:\\projects\\robot\\eval_logs\\pi05_libero_multitask_goal_all_10ep\\videos\\libero_goal_5\\eval_episode_9.mp4"
+      ]
+    },
+    {
+      "task_group": "libero_goal",
+      "task_id": 6,
+      "episodes": 10,
+      "successes": 10,
+      "success_rate_percent": 100.0,
+      "sum_rewards": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "video_paths": [
+        "E:\\projects\\robot\\eval_logs\\pi05_libero_multitask_goal_all_10ep\\videos\\libero_goal_6\\eval_episode_0.mp4",
+        "E:\\projects\\robot\\eval_logs\\pi05_libero_multitask_goal_all_10ep\\videos\\libero_goal_6\\eval_episode_1.mp4",
+        "E:\\projects\\robot\\eval_logs\\pi05_libero_multitask_goal_all_10ep\\videos\\libero_goal_6\\eval_episode_2.mp4",
+        "E:\\projects\\robot\\eval_logs\\pi05_libero_multitask_goal_all_10ep\\videos\\libero_goal_6\\eval_episode_3.mp4",
+        "E:\\projects\\robot\\eval_logs\\pi05_libero_multitask_goal_all_10ep\\videos\\libero_goal_6\\eval_episode_4.mp4",
+        "E:\\projects\\robot\\eval_logs\\pi05_libero_multitask_goal_all_10ep\\videos\\libero_goal_6\\eval_episode_5.mp4",
+        "E:\\projects\\robot\\eval_logs\\pi05_libero_multitask_goal_all_10ep\\videos\\libero_goal_6\\eval_episode_6.mp4",
+        "E:\\projects\\robot\\eval_logs\\pi05_libero_multitask_goal_all_10ep\\videos\\libero_goal_6\\eval_episode_7.mp4",
+        "E:\\projects\\robot\\eval_logs\\pi05_libero_multitask_goal_all_10ep\\videos\\libero_goal_6\\eval_episode_8.mp4",
+        "E:\\projects\\robot\\eval_logs\\pi05_libero_multitask_goal_all_10ep\\videos\\libero_goal_6\\eval_episode_9.mp4"
+      ]
+    },
+    {
+      "task_group": "libero_goal",
+      "task_id": 7,
+      "episodes": 10,
+      "successes": 10,
+      "success_rate_percent": 100.0,
+      "sum_rewards": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "video_paths": [
+        "E:\\projects\\robot\\eval_logs\\pi05_libero_multitask_goal_all_10ep\\videos\\libero_goal_7\\eval_episode_0.mp4",
+        "E:\\projects\\robot\\eval_logs\\pi05_libero_multitask_goal_all_10ep\\videos\\libero_goal_7\\eval_episode_1.mp4",
+        "E:\\projects\\robot\\eval_logs\\pi05_libero_multitask_goal_all_10ep\\videos\\libero_goal_7\\eval_episode_2.mp4",
+        "E:\\projects\\robot\\eval_logs\\pi05_libero_multitask_goal_all_10ep\\videos\\libero_goal_7\\eval_episode_3.mp4",
+        "E:\\projects\\robot\\eval_logs\\pi05_libero_multitask_goal_all_10ep\\videos\\libero_goal_7\\eval_episode_4.mp4",
+        "E:\\projects\\robot\\eval_logs\\pi05_libero_multitask_goal_all_10ep\\videos\\libero_goal_7\\eval_episode_5.mp4",
+        "E:\\projects\\robot\\eval_logs\\pi05_libero_multitask_goal_all_10ep\\videos\\libero_goal_7\\eval_episode_6.mp4",
+        "E:\\projects\\robot\\eval_logs\\pi05_libero_multitask_goal_all_10ep\\videos\\libero_goal_7\\eval_episode_7.mp4",
+        "E:\\projects\\robot\\eval_logs\\pi05_libero_multitask_goal_all_10ep\\videos\\libero_goal_7\\eval_episode_8.mp4",
+        "E:\\projects\\robot\\eval_logs\\pi05_libero_multitask_goal_all_10ep\\videos\\libero_goal_7\\eval_episode_9.mp4"
+      ]
+    },
+    {
+      "task_group": "libero_goal",
+      "task_id": 8,
+      "episodes": 10,
+      "successes": 10,
+      "success_rate_percent": 100.0,
+      "sum_rewards": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "video_paths": [
+        "E:\\projects\\robot\\eval_logs\\pi05_libero_multitask_goal_all_10ep\\videos\\libero_goal_8\\eval_episode_0.mp4",
+        "E:\\projects\\robot\\eval_logs\\pi05_libero_multitask_goal_all_10ep\\videos\\libero_goal_8\\eval_episode_1.mp4",
+        "E:\\projects\\robot\\eval_logs\\pi05_libero_multitask_goal_all_10ep\\videos\\libero_goal_8\\eval_episode_2.mp4",
+        "E:\\projects\\robot\\eval_logs\\pi05_libero_multitask_goal_all_10ep\\videos\\libero_goal_8\\eval_episode_3.mp4",
+        "E:\\projects\\robot\\eval_logs\\pi05_libero_multitask_goal_all_10ep\\videos\\libero_goal_8\\eval_episode_4.mp4",
+        "E:\\projects\\robot\\eval_logs\\pi05_libero_multitask_goal_all_10ep\\videos\\libero_goal_8\\eval_episode_5.mp4",
+        "E:\\projects\\robot\\eval_logs\\pi05_libero_multitask_goal_all_10ep\\videos\\libero_goal_8\\eval_episode_6.mp4",
+        "E:\\projects\\robot\\eval_logs\\pi05_libero_multitask_goal_all_10ep\\videos\\libero_goal_8\\eval_episode_7.mp4",
+        "E:\\projects\\robot\\eval_logs\\pi05_libero_multitask_goal_all_10ep\\videos\\libero_goal_8\\eval_episode_8.mp4",
+        "E:\\projects\\robot\\eval_logs\\pi05_libero_multitask_goal_all_10ep\\videos\\libero_goal_8\\eval_episode_9.mp4"
+      ]
+    },
+    {
+      "task_group": "libero_goal",
+      "task_id": 9,
+      "episodes": 10,
+      "successes": 9,
+      "success_rate_percent": 90.0,
+      "sum_rewards": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        0.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "video_paths": [
+        "E:\\projects\\robot\\eval_logs\\pi05_libero_multitask_goal_all_10ep\\videos\\libero_goal_9\\eval_episode_0.mp4",
+        "E:\\projects\\robot\\eval_logs\\pi05_libero_multitask_goal_all_10ep\\videos\\libero_goal_9\\eval_episode_1.mp4",
+        "E:\\projects\\robot\\eval_logs\\pi05_libero_multitask_goal_all_10ep\\videos\\libero_goal_9\\eval_episode_2.mp4",
+        "E:\\projects\\robot\\eval_logs\\pi05_libero_multitask_goal_all_10ep\\videos\\libero_goal_9\\eval_episode_3.mp4",
+        "E:\\projects\\robot\\eval_logs\\pi05_libero_multitask_goal_all_10ep\\videos\\libero_goal_9\\eval_episode_4.mp4",
+        "E:\\projects\\robot\\eval_logs\\pi05_libero_multitask_goal_all_10ep\\videos\\libero_goal_9\\eval_episode_5.mp4",
+        "E:\\projects\\robot\\eval_logs\\pi05_libero_multitask_goal_all_10ep\\videos\\libero_goal_9\\eval_episode_6.mp4",
+        "E:\\projects\\robot\\eval_logs\\pi05_libero_multitask_goal_all_10ep\\videos\\libero_goal_9\\eval_episode_7.mp4",
+        "E:\\projects\\robot\\eval_logs\\pi05_libero_multitask_goal_all_10ep\\videos\\libero_goal_9\\eval_episode_8.mp4",
+        "E:\\projects\\robot\\eval_logs\\pi05_libero_multitask_goal_all_10ep\\videos\\libero_goal_9\\eval_episode_9.mp4"
+      ]
+    }
+  ],
+  "note": "All libero_goal task ids 0-9. Episodes means per task in the LeRobot eval wrapper."
+}

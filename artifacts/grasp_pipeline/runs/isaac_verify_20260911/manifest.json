@@ -1,0 +1,30 @@
+{
+  "status": "headless_stage_load_verified",
+  "timestamp": "2026-09-11T13:47:38+08:00",
+  "run_name": "isaac_verify_20260911",
+  "workspace": "E:\\projects\\robot",
+  "environment_path": "E:\\envs\\isaacsim61",
+  "launcher": "E:\\envs\\isaacsim61\\Scripts\\isaacsim.exe",
+  "python": "E:\\envs\\isaacsim61\\python.exe",
+  "scene": "artifacts\\grasp_pipeline\\runs\\isaac_preview_20260910\\put_bowl_on_plate_preview.usda",
+  "validation": {
+    "eula_accepted_for_process": true,
+    "isaac_help_command": "passed",
+    "headless_stage_load": "passed",
+    "stage_update_frames": 5,
+    "gpu_detected_by_isaac": "NVIDIA GeForce RTX 4090",
+    "warp_cuda_detected": true,
+    "kit_log": "E:\\envs\\isaacsim61\\Lib\\site-packages\\isaacsim\\kit\\logs\\Kit\\Isaac-Sim Python\\6.1\\kit_20260911_134547.log"
+  },
+  "notes": [
+    "Directly passing a USDA path as the first positional argument to the pip isaacsim.exe is not valid because the first positional argument is parsed as the Kit experience.",
+    "scripts\\launch_isaac_preview.ps1 was updated so pip installs launch scripts\\isaac_load_preview.py through E:\\envs\\isaacsim61\\python.exe.",
+    "The verified headless load printed: Loaded Isaac preview scene.",
+    "The driver warning remains: DLSS-RR Responsive Denoising requires an R580 or newer display driver, falling back to preset D."
+  ],
+  "next_steps": [
+    "Use scripts\\launch_isaac_preview.ps1 without -Headless to open the preview GUI.",
+    "Upgrade the NVIDIA driver before relying on RTX rendering quality/performance.",
+    "Implement rollout-to-Isaac replay export for all LIBERO tasks after the preview GUI is confirmed visually."
+  ]
+}

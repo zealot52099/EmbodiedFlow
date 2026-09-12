@@ -1,0 +1,34 @@
+{
+  "status": "success",
+  "timestamp": "2026-09-11T03:22:37+08:00",
+  "run_name": "obstacle_eval_smoke_20260911",
+  "workspace": "E:\\projects\\robot",
+  "policy_path": "outputs\\pi05_libero_multitask_4090\\checkpoints\\030000\\pretrained_model",
+  "curriculum": "artifacts\\grasp_pipeline\\runs\\obstacle_curriculum_20260911\\obstacle_curriculum.json",
+  "smoke_eval": {
+    "output_dir": "eval_logs\\pi05_libero_obstacle_smoke_task0_easy_1ep_v2",
+    "scenario_count": 1,
+    "episodes": 1,
+    "task_success_rate_percent": 100.0,
+    "avoidance_success_rate_percent": 100.0,
+    "collision_episode_count": 0
+  },
+  "priority_eval": {
+    "output_dir": "eval_logs\\pi05_libero_obstacle_priority_easy_3scenarios_1ep",
+    "scenario_ids": [
+      "libero_goal_02_easy_00",
+      "libero_goal_03_easy_00",
+      "libero_goal_09_easy_00"
+    ],
+    "episodes": 3,
+    "task_success_rate_percent": 66.66666666666667,
+    "avoidance_success_rate_percent": 66.66666666666667,
+    "collision_episode_count": 0,
+    "failed_scenarios": ["libero_goal_03_easy_00"]
+  },
+  "next_steps": [
+    "Run a broader easy obstacle eval over all libero_goal task ids with multiple seeds.",
+    "Add minimum clearance telemetry using MuJoCo geom distance or a conservative proxy.",
+    "Collect obstacle expert trajectories for task 3 and other failures before fine-tuning."
+  ]
+}

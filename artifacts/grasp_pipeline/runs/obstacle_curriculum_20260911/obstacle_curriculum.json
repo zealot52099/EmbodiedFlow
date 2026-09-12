@@ -1,0 +1,1200 @@
+{
+  "status": "ready",
+  "timestamp": "2026-09-11T01:57:32",
+  "task_group": "libero_goal",
+  "task_ids": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+  ],
+  "seed": 2000,
+  "scenario_count": 50,
+  "episode_count": 450,
+  "metric_contract": {
+    "task_success": "original LIBERO sparse success",
+    "collision_count": "MuJoCo contacts between robot geoms and obstacle geoms",
+    "min_clearance_m": "minimum robot-to-obstacle geom distance when available, else sampled proxy distance",
+    "safety_success": "collision_count == 0 and min_clearance_m >= scenario clearance margin",
+    "avoidance_success": "task_success and safety_success"
+  },
+  "bc_targets": {
+    "expert_source_order": [
+      "cuRobo/OMPL waypoints",
+      "Isaac Sim motion generation",
+      "human teleop cleanup"
+    ],
+    "observation_additions": [
+      "obstacle poses",
+      "depth or segmentation mask",
+      "signed distance/occupancy feature"
+    ],
+    "losses": [
+      "action_mse",
+      "waypoint_mse",
+      "clearance_margin_aux"
+    ]
+  },
+  "rl_targets": {
+    "algorithm_candidates": [
+      "PPO",
+      "GRPO"
+    ],
+    "reward_terms": {
+      "task_success": 1.0,
+      "collision": -1.0,
+      "clearance_violation": -0.2,
+      "path_length": -0.01,
+      "action_jerk": -0.01
+    }
+  },
+  "scenarios": [
+    {
+      "scenario_id": "libero_goal_00_easy_00",
+      "task_group": "libero_goal",
+      "task_id": 0,
+      "difficulty": "easy",
+      "seed": 2000,
+      "episodes": 5,
+      "obstacles": [
+        {
+          "name": "side_block",
+          "shape": "box",
+          "size_m": [
+            0.08,
+            0.08,
+            0.1
+          ],
+          "placement_rule": "lateral_to_nominal_pick_path",
+          "clearance_margin_m": 0.04,
+          "collision_policy": "forbidden_except_task_object_contact",
+          "description": "A small block near the nominal approach path, leaving a direct but narrower route."
+        }
+      ]
+    },
+    {
+      "scenario_id": "libero_goal_00_medium_00",
+      "task_group": "libero_goal",
+      "task_id": 0,
+      "difficulty": "medium",
+      "seed": 2001,
+      "episodes": 10,
+      "obstacles": [
+        {
+          "name": "corridor_pair",
+          "shape": "box",
+          "size_m": [
+            0.07,
+            0.12,
+            0.12
+          ],
+          "placement_rule": "two_sides_of_nominal_transfer_path",
+          "clearance_margin_m": 0.06,
+          "collision_policy": "forbidden_except_task_object_contact",
+          "description": "Two obstacles form a corridor between pick and place regions."
+        }
+      ]
+    },
+    {
+      "scenario_id": "libero_goal_00_medium_01",
+      "task_group": "libero_goal",
+      "task_id": 0,
+      "difficulty": "medium",
+      "seed": 2002,
+      "episodes": 10,
+      "obstacles": [
+        {
+          "name": "target_guard",
+          "shape": "cylinder",
+          "size_m": [
+            0.05,
+            0.12
+          ],
+          "placement_rule": "near_target_region_not_overlapping_goal",
+          "clearance_margin_m": 0.06,
+          "collision_policy": "forbidden_except_task_object_contact",
+          "description": "A narrow obstacle close to the placement target tests final approach clearance."
+        }
+      ]
+    },
+    {
+      "scenario_id": "libero_goal_00_hard_00",
+      "task_group": "libero_goal",
+      "task_id": 0,
+      "difficulty": "hard",
+      "seed": 2003,
+      "episodes": 10,
+      "obstacles": [
+        {
+          "name": "blocked_straight_line",
+          "shape": "box",
+          "size_m": [
+            0.12,
+            0.08,
+            0.14
+          ],
+          "placement_rule": "center_of_nominal_pick_to_place_line",
+          "clearance_margin_m": 0.08,
+          "collision_policy": "forbidden_except_task_object_contact",
+          "description": "A central obstacle blocks the straight transfer line and requires an arcing route."
+        }
+      ]
+    },
+    {
+      "scenario_id": "libero_goal_00_hard_01",
+      "task_group": "libero_goal",
+      "task_id": 0,
+      "difficulty": "hard",
+      "seed": 2004,
+      "episodes": 10,
+      "obstacles": [
+        {
+          "name": "dynamic_reserved_band",
+          "shape": "virtual_safety_zone",
+          "size_m": [
+            0.18,
+            0.08,
+            0.16
+          ],
+          "placement_rule": "sampled_between_eef_start_and_goal",
+          "clearance_margin_m": 0.08,
+          "collision_policy": "forbidden_except_task_object_contact",
+          "description": "A reserved no-go band for future dynamic obstacle or second-arm occupancy tests."
+        }
+      ]
+    },
+    {
+      "scenario_id": "libero_goal_01_easy_00",
+      "task_group": "libero_goal",
+      "task_id": 1,
+      "difficulty": "easy",
+      "seed": 2005,
+      "episodes": 5,
+      "obstacles": [
+        {
+          "name": "side_block",
+          "shape": "box",
+          "size_m": [
+            0.08,
+            0.08,
+            0.1
+          ],
+          "placement_rule": "lateral_to_nominal_pick_path",
+          "clearance_margin_m": 0.04,
+          "collision_policy": "forbidden_except_task_object_contact",
+          "description": "A small block near the nominal approach path, leaving a direct but narrower route."
+        }
+      ]
+    },
+    {
+      "scenario_id": "libero_goal_01_medium_00",
+      "task_group": "libero_goal",
+      "task_id": 1,
+      "difficulty": "medium",
+      "seed": 2006,
+      "episodes": 10,
+      "obstacles": [
+        {
+          "name": "corridor_pair",
+          "shape": "box",
+          "size_m": [
+            0.07,
+            0.12,
+            0.12
+          ],
+          "placement_rule": "two_sides_of_nominal_transfer_path",
+          "clearance_margin_m": 0.06,
+          "collision_policy": "forbidden_except_task_object_contact",
+          "description": "Two obstacles form a corridor between pick and place regions."
+        }
+      ]
+    },
+    {
+      "scenario_id": "libero_goal_01_medium_01",
+      "task_group": "libero_goal",
+      "task_id": 1,
+      "difficulty": "medium",
+      "seed": 2007,
+      "episodes": 10,
+      "obstacles": [
+        {
+          "name": "target_guard",
+          "shape": "cylinder",
+          "size_m": [
+            0.05,
+            0.12
+          ],
+          "placement_rule": "near_target_region_not_overlapping_goal",
+          "clearance_margin_m": 0.06,
+          "collision_policy": "forbidden_except_task_object_contact",
+          "description": "A narrow obstacle close to the placement target tests final approach clearance."
+        }
+      ]
+    },
+    {
+      "scenario_id": "libero_goal_01_hard_00",
+      "task_group": "libero_goal",
+      "task_id": 1,
+      "difficulty": "hard",
+      "seed": 2008,
+      "episodes": 10,
+      "obstacles": [
+        {
+          "name": "blocked_straight_line",
+          "shape": "box",
+          "size_m": [
+            0.12,
+            0.08,
+            0.14
+          ],
+          "placement_rule": "center_of_nominal_pick_to_place_line",
+          "clearance_margin_m": 0.08,
+          "collision_policy": "forbidden_except_task_object_contact",
+          "description": "A central obstacle blocks the straight transfer line and requires an arcing route."
+        }
+      ]
+    },
+    {
+      "scenario_id": "libero_goal_01_hard_01",
+      "task_group": "libero_goal",
+      "task_id": 1,
+      "difficulty": "hard",
+      "seed": 2009,
+      "episodes": 10,
+      "obstacles": [
+        {
+          "name": "dynamic_reserved_band",
+          "shape": "virtual_safety_zone",
+          "size_m": [
+            0.18,
+            0.08,
+            0.16
+          ],
+          "placement_rule": "sampled_between_eef_start_and_goal",
+          "clearance_margin_m": 0.08,
+          "collision_policy": "forbidden_except_task_object_contact",
+          "description": "A reserved no-go band for future dynamic obstacle or second-arm occupancy tests."
+        }
+      ]
+    },
+    {
+      "scenario_id": "libero_goal_02_easy_00",
+      "task_group": "libero_goal",
+      "task_id": 2,
+      "difficulty": "easy",
+      "seed": 2010,
+      "episodes": 5,
+      "obstacles": [
+        {
+          "name": "side_block",
+          "shape": "box",
+          "size_m": [
+            0.08,
+            0.08,
+            0.1
+          ],
+          "placement_rule": "lateral_to_nominal_pick_path",
+          "clearance_margin_m": 0.04,
+          "collision_policy": "forbidden_except_task_object_contact",
+          "description": "A small block near the nominal approach path, leaving a direct but narrower route."
+        }
+      ]
+    },
+    {
+      "scenario_id": "libero_goal_02_medium_00",
+      "task_group": "libero_goal",
+      "task_id": 2,
+      "difficulty": "medium",
+      "seed": 2011,
+      "episodes": 10,
+      "obstacles": [
+        {
+          "name": "corridor_pair",
+          "shape": "box",
+          "size_m": [
+            0.07,
+            0.12,
+            0.12
+          ],
+          "placement_rule": "two_sides_of_nominal_transfer_path",
+          "clearance_margin_m": 0.06,
+          "collision_policy": "forbidden_except_task_object_contact",
+          "description": "Two obstacles form a corridor between pick and place regions."
+        }
+      ]
+    },
+    {
+      "scenario_id": "libero_goal_02_medium_01",
+      "task_group": "libero_goal",
+      "task_id": 2,
+      "difficulty": "medium",
+      "seed": 2012,
+      "episodes": 10,
+      "obstacles": [
+        {
+          "name": "target_guard",
+          "shape": "cylinder",
+          "size_m": [
+            0.05,
+            0.12
+          ],
+          "placement_rule": "near_target_region_not_overlapping_goal",
+          "clearance_margin_m": 0.06,
+          "collision_policy": "forbidden_except_task_object_contact",
+          "description": "A narrow obstacle close to the placement target tests final approach clearance."
+        }
+      ]
+    },
+    {
+      "scenario_id": "libero_goal_02_hard_00",
+      "task_group": "libero_goal",
+      "task_id": 2,
+      "difficulty": "hard",
+      "seed": 2013,
+      "episodes": 10,
+      "obstacles": [
+        {
+          "name": "blocked_straight_line",
+          "shape": "box",
+          "size_m": [
+            0.12,
+            0.08,
+            0.14
+          ],
+          "placement_rule": "center_of_nominal_pick_to_place_line",
+          "clearance_margin_m": 0.08,
+          "collision_policy": "forbidden_except_task_object_contact",
+          "description": "A central obstacle blocks the straight transfer line and requires an arcing route."
+        }
+      ]
+    },
+    {
+      "scenario_id": "libero_goal_02_hard_01",
+      "task_group": "libero_goal",
+      "task_id": 2,
+      "difficulty": "hard",
+      "seed": 2014,
+      "episodes": 10,
+      "obstacles": [
+        {
+          "name": "dynamic_reserved_band",
+          "shape": "virtual_safety_zone",
+          "size_m": [
+            0.18,
+            0.08,
+            0.16
+          ],
+          "placement_rule": "sampled_between_eef_start_and_goal",
+          "clearance_margin_m": 0.08,
+          "collision_policy": "forbidden_except_task_object_contact",
+          "description": "A reserved no-go band for future dynamic obstacle or second-arm occupancy tests."
+        }
+      ]
+    },
+    {
+      "scenario_id": "libero_goal_03_easy_00",
+      "task_group": "libero_goal",
+      "task_id": 3,
+      "difficulty": "easy",
+      "seed": 2015,
+      "episodes": 5,
+      "obstacles": [
+        {
+          "name": "side_block",
+          "shape": "box",
+          "size_m": [
+            0.08,
+            0.08,
+            0.1
+          ],
+          "placement_rule": "lateral_to_nominal_pick_path",
+          "clearance_margin_m": 0.04,
+          "collision_policy": "forbidden_except_task_object_contact",
+          "description": "A small block near the nominal approach path, leaving a direct but narrower route."
+        }
+      ]
+    },
+    {
+      "scenario_id": "libero_goal_03_medium_00",
+      "task_group": "libero_goal",
+      "task_id": 3,
+      "difficulty": "medium",
+      "seed": 2016,
+      "episodes": 10,
+      "obstacles": [
+        {
+          "name": "corridor_pair",
+          "shape": "box",
+          "size_m": [
+            0.07,
+            0.12,
+            0.12
+          ],
+          "placement_rule": "two_sides_of_nominal_transfer_path",
+          "clearance_margin_m": 0.06,
+          "collision_policy": "forbidden_except_task_object_contact",
+          "description": "Two obstacles form a corridor between pick and place regions."
+        }
+      ]
+    },
+    {
+      "scenario_id": "libero_goal_03_medium_01",
+      "task_group": "libero_goal",
+      "task_id": 3,
+      "difficulty": "medium",
+      "seed": 2017,
+      "episodes": 10,
+      "obstacles": [
+        {
+          "name": "target_guard",
+          "shape": "cylinder",
+          "size_m": [
+            0.05,
+            0.12
+          ],
+          "placement_rule": "near_target_region_not_overlapping_goal",
+          "clearance_margin_m": 0.06,
+          "collision_policy": "forbidden_except_task_object_contact",
+          "description": "A narrow obstacle close to the placement target tests final approach clearance."
+        }
+      ]
+    },
+    {
+      "scenario_id": "libero_goal_03_hard_00",
+      "task_group": "libero_goal",
+      "task_id": 3,
+      "difficulty": "hard",
+      "seed": 2018,
+      "episodes": 10,
+      "obstacles": [
+        {
+          "name": "blocked_straight_line",
+          "shape": "box",
+          "size_m": [
+            0.12,
+            0.08,
+            0.14
+          ],
+          "placement_rule": "center_of_nominal_pick_to_place_line",
+          "clearance_margin_m": 0.08,
+          "collision_policy": "forbidden_except_task_object_contact",
+          "description": "A central obstacle blocks the straight transfer line and requires an arcing route."
+        }
+      ]
+    },
+    {
+      "scenario_id": "libero_goal_03_hard_01",
+      "task_group": "libero_goal",
+      "task_id": 3,
+      "difficulty": "hard",
+      "seed": 2019,
+      "episodes": 10,
+      "obstacles": [
+        {
+          "name": "dynamic_reserved_band",
+          "shape": "virtual_safety_zone",
+          "size_m": [
+            0.18,
+            0.08,
+            0.16
+          ],
+          "placement_rule": "sampled_between_eef_start_and_goal",
+          "clearance_margin_m": 0.08,
+          "collision_policy": "forbidden_except_task_object_contact",
+          "description": "A reserved no-go band for future dynamic obstacle or second-arm occupancy tests."
+        }
+      ]
+    },
+    {
+      "scenario_id": "libero_goal_04_easy_00",
+      "task_group": "libero_goal",
+      "task_id": 4,
+      "difficulty": "easy",
+      "seed": 2020,
+      "episodes": 5,
+      "obstacles": [
+        {
+          "name": "side_block",
+          "shape": "box",
+          "size_m": [
+            0.08,
+            0.08,
+            0.1
+          ],
+          "placement_rule": "lateral_to_nominal_pick_path",
+          "clearance_margin_m": 0.04,
+          "collision_policy": "forbidden_except_task_object_contact",
+          "description": "A small block near the nominal approach path, leaving a direct but narrower route."
+        }
+      ]
+    },
+    {
+      "scenario_id": "libero_goal_04_medium_00",
+      "task_group": "libero_goal",
+      "task_id": 4,
+      "difficulty": "medium",
+      "seed": 2021,
+      "episodes": 10,
+      "obstacles": [
+        {
+          "name": "corridor_pair",
+          "shape": "box",
+          "size_m": [
+            0.07,
+            0.12,
+            0.12
+          ],
+          "placement_rule": "two_sides_of_nominal_transfer_path",
+          "clearance_margin_m": 0.06,
+          "collision_policy": "forbidden_except_task_object_contact",
+          "description": "Two obstacles form a corridor between pick and place regions."
+        }
+      ]
+    },
+    {
+      "scenario_id": "libero_goal_04_medium_01",
+      "task_group": "libero_goal",
+      "task_id": 4,
+      "difficulty": "medium",
+      "seed": 2022,
+      "episodes": 10,
+      "obstacles": [
+        {
+          "name": "target_guard",
+          "shape": "cylinder",
+          "size_m": [
+            0.05,
+            0.12
+          ],
+          "placement_rule": "near_target_region_not_overlapping_goal",
+          "clearance_margin_m": 0.06,
+          "collision_policy": "forbidden_except_task_object_contact",
+          "description": "A narrow obstacle close to the placement target tests final approach clearance."
+        }
+      ]
+    },
+    {
+      "scenario_id": "libero_goal_04_hard_00",
+      "task_group": "libero_goal",
+      "task_id": 4,
+      "difficulty": "hard",
+      "seed": 2023,
+      "episodes": 10,
+      "obstacles": [
+        {
+          "name": "blocked_straight_line",
+          "shape": "box",
+          "size_m": [
+            0.12,
+            0.08,
+            0.14
+          ],
+          "placement_rule": "center_of_nominal_pick_to_place_line",
+          "clearance_margin_m": 0.08,
+          "collision_policy": "forbidden_except_task_object_contact",
+          "description": "A central obstacle blocks the straight transfer line and requires an arcing route."
+        }
+      ]
+    },
+    {
+      "scenario_id": "libero_goal_04_hard_01",
+      "task_group": "libero_goal",
+      "task_id": 4,
+      "difficulty": "hard",
+      "seed": 2024,
+      "episodes": 10,
+      "obstacles": [
+        {
+          "name": "dynamic_reserved_band",
+          "shape": "virtual_safety_zone",
+          "size_m": [
+            0.18,
+            0.08,
+            0.16
+          ],
+          "placement_rule": "sampled_between_eef_start_and_goal",
+          "clearance_margin_m": 0.08,
+          "collision_policy": "forbidden_except_task_object_contact",
+          "description": "A reserved no-go band for future dynamic obstacle or second-arm occupancy tests."
+        }
+      ]
+    },
+    {
+      "scenario_id": "libero_goal_05_easy_00",
+      "task_group": "libero_goal",
+      "task_id": 5,
+      "difficulty": "easy",
+      "seed": 2025,
+      "episodes": 5,
+      "obstacles": [
+        {
+          "name": "side_block",
+          "shape": "box",
+          "size_m": [
+            0.08,
+            0.08,
+            0.1
+          ],
+          "placement_rule": "lateral_to_nominal_pick_path",
+          "clearance_margin_m": 0.04,
+          "collision_policy": "forbidden_except_task_object_contact",
+          "description": "A small block near the nominal approach path, leaving a direct but narrower route."
+        }
+      ]
+    },
+    {
+      "scenario_id": "libero_goal_05_medium_00",
+      "task_group": "libero_goal",
+      "task_id": 5,
+      "difficulty": "medium",
+      "seed": 2026,
+      "episodes": 10,
+      "obstacles": [
+        {
+          "name": "corridor_pair",
+          "shape": "box",
+          "size_m": [
+            0.07,
+            0.12,
+            0.12
+          ],
+          "placement_rule": "two_sides_of_nominal_transfer_path",
+          "clearance_margin_m": 0.06,
+          "collision_policy": "forbidden_except_task_object_contact",
+          "description": "Two obstacles form a corridor between pick and place regions."
+        }
+      ]
+    },
+    {
+      "scenario_id": "libero_goal_05_medium_01",
+      "task_group": "libero_goal",
+      "task_id": 5,
+      "difficulty": "medium",
+      "seed": 2027,
+      "episodes": 10,
+      "obstacles": [
+        {
+          "name": "target_guard",
+          "shape": "cylinder",
+          "size_m": [
+            0.05,
+            0.12
+          ],
+          "placement_rule": "near_target_region_not_overlapping_goal",
+          "clearance_margin_m": 0.06,
+          "collision_policy": "forbidden_except_task_object_contact",
+          "description": "A narrow obstacle close to the placement target tests final approach clearance."
+        }
+      ]
+    },
+    {
+      "scenario_id": "libero_goal_05_hard_00",
+      "task_group": "libero_goal",
+      "task_id": 5,
+      "difficulty": "hard",
+      "seed": 2028,
+      "episodes": 10,
+      "obstacles": [
+        {
+          "name": "blocked_straight_line",
+          "shape": "box",
+          "size_m": [
+            0.12,
+            0.08,
+            0.14
+          ],
+          "placement_rule": "center_of_nominal_pick_to_place_line",
+          "clearance_margin_m": 0.08,
+          "collision_policy": "forbidden_except_task_object_contact",
+          "description": "A central obstacle blocks the straight transfer line and requires an arcing route."
+        }
+      ]
+    },
+    {
+      "scenario_id": "libero_goal_05_hard_01",
+      "task_group": "libero_goal",
+      "task_id": 5,
+      "difficulty": "hard",
+      "seed": 2029,
+      "episodes": 10,
+      "obstacles": [
+        {
+          "name": "dynamic_reserved_band",
+          "shape": "virtual_safety_zone",
+          "size_m": [
+            0.18,
+            0.08,
+            0.16
+          ],
+          "placement_rule": "sampled_between_eef_start_and_goal",
+          "clearance_margin_m": 0.08,
+          "collision_policy": "forbidden_except_task_object_contact",
+          "description": "A reserved no-go band for future dynamic obstacle or second-arm occupancy tests."
+        }
+      ]
+    },
+    {
+      "scenario_id": "libero_goal_06_easy_00",
+      "task_group": "libero_goal",
+      "task_id": 6,
+      "difficulty": "easy",
+      "seed": 2030,
+      "episodes": 5,
+      "obstacles": [
+        {
+          "name": "side_block",
+          "shape": "box",
+          "size_m": [
+            0.08,
+            0.08,
+            0.1
+          ],
+          "placement_rule": "lateral_to_nominal_pick_path",
+          "clearance_margin_m": 0.04,
+          "collision_policy": "forbidden_except_task_object_contact",
+          "description": "A small block near the nominal approach path, leaving a direct but narrower route."
+        }
+      ]
+    },
+    {
+      "scenario_id": "libero_goal_06_medium_00",
+      "task_group": "libero_goal",
+      "task_id": 6,
+      "difficulty": "medium",
+      "seed": 2031,
+      "episodes": 10,
+      "obstacles": [
+        {
+          "name": "corridor_pair",
+          "shape": "box",
+          "size_m": [
+            0.07,
+            0.12,
+            0.12
+          ],
+          "placement_rule": "two_sides_of_nominal_transfer_path",
+          "clearance_margin_m": 0.06,
+          "collision_policy": "forbidden_except_task_object_contact",
+          "description": "Two obstacles form a corridor between pick and place regions."
+        }
+      ]
+    },
+    {
+      "scenario_id": "libero_goal_06_medium_01",
+      "task_group": "libero_goal",
+      "task_id": 6,
+      "difficulty": "medium",
+      "seed": 2032,
+      "episodes": 10,
+      "obstacles": [
+        {
+          "name": "target_guard",
+          "shape": "cylinder",
+          "size_m": [
+            0.05,
+            0.12
+          ],
+          "placement_rule": "near_target_region_not_overlapping_goal",
+          "clearance_margin_m": 0.06,
+          "collision_policy": "forbidden_except_task_object_contact",
+          "description": "A narrow obstacle close to the placement target tests final approach clearance."
+        }
+      ]
+    },
+    {
+      "scenario_id": "libero_goal_06_hard_00",
+      "task_group": "libero_goal",
+      "task_id": 6,
+      "difficulty": "hard",
+      "seed": 2033,
+      "episodes": 10,
+      "obstacles": [
+        {
+          "name": "blocked_straight_line",
+          "shape": "box",
+          "size_m": [
+            0.12,
+            0.08,
+            0.14
+          ],
+          "placement_rule": "center_of_nominal_pick_to_place_line",
+          "clearance_margin_m": 0.08,
+          "collision_policy": "forbidden_except_task_object_contact",
+          "description": "A central obstacle blocks the straight transfer line and requires an arcing route."
+        }
+      ]
+    },
+    {
+      "scenario_id": "libero_goal_06_hard_01",
+      "task_group": "libero_goal",
+      "task_id": 6,
+      "difficulty": "hard",
+      "seed": 2034,
+      "episodes": 10,
+      "obstacles": [
+        {
+          "name": "dynamic_reserved_band",
+          "shape": "virtual_safety_zone",
+          "size_m": [
+            0.18,
+            0.08,
+            0.16
+          ],
+          "placement_rule": "sampled_between_eef_start_and_goal",
+          "clearance_margin_m": 0.08,
+          "collision_policy": "forbidden_except_task_object_contact",
+          "description": "A reserved no-go band for future dynamic obstacle or second-arm occupancy tests."
+        }
+      ]
+    },
+    {
+      "scenario_id": "libero_goal_07_easy_00",
+      "task_group": "libero_goal",
+      "task_id": 7,
+      "difficulty": "easy",
+      "seed": 2035,
+      "episodes": 5,
+      "obstacles": [
+        {
+          "name": "side_block",
+          "shape": "box",
+          "size_m": [
+            0.08,
+            0.08,
+            0.1
+          ],
+          "placement_rule": "lateral_to_nominal_pick_path",
+          "clearance_margin_m": 0.04,
+          "collision_policy": "forbidden_except_task_object_contact",
+          "description": "A small block near the nominal approach path, leaving a direct but narrower route."
+        }
+      ]
+    },
+    {
+      "scenario_id": "libero_goal_07_medium_00",
+      "task_group": "libero_goal",
+      "task_id": 7,
+      "difficulty": "medium",
+      "seed": 2036,
+      "episodes": 10,
+      "obstacles": [
+        {
+          "name": "corridor_pair",
+          "shape": "box",
+          "size_m": [
+            0.07,
+            0.12,
+            0.12
+          ],
+          "placement_rule": "two_sides_of_nominal_transfer_path",
+          "clearance_margin_m": 0.06,
+          "collision_policy": "forbidden_except_task_object_contact",
+          "description": "Two obstacles form a corridor between pick and place regions."
+        }
+      ]
+    },
+    {
+      "scenario_id": "libero_goal_07_medium_01",
+      "task_group": "libero_goal",
+      "task_id": 7,
+      "difficulty": "medium",
+      "seed": 2037,
+      "episodes": 10,
+      "obstacles": [
+        {
+          "name": "target_guard",
+          "shape": "cylinder",
+          "size_m": [
+            0.05,
+            0.12
+          ],
+          "placement_rule": "near_target_region_not_overlapping_goal",
+          "clearance_margin_m": 0.06,
+          "collision_policy": "forbidden_except_task_object_contact",
+          "description": "A narrow obstacle close to the placement target tests final approach clearance."
+        }
+      ]
+    },
+    {
+      "scenario_id": "libero_goal_07_hard_00",
+      "task_group": "libero_goal",
+      "task_id": 7,
+      "difficulty": "hard",
+      "seed": 2038,
+      "episodes": 10,
+      "obstacles": [
+        {
+          "name": "blocked_straight_line",
+          "shape": "box",
+          "size_m": [
+            0.12,
+            0.08,
+            0.14
+          ],
+          "placement_rule": "center_of_nominal_pick_to_place_line",
+          "clearance_margin_m": 0.08,
+          "collision_policy": "forbidden_except_task_object_contact",
+          "description": "A central obstacle blocks the straight transfer line and requires an arcing route."
+        }
+      ]
+    },
+    {
+      "scenario_id": "libero_goal_07_hard_01",
+      "task_group": "libero_goal",
+      "task_id": 7,
+      "difficulty": "hard",
+      "seed": 2039,
+      "episodes": 10,
+      "obstacles": [
+        {
+          "name": "dynamic_reserved_band",
+          "shape": "virtual_safety_zone",
+          "size_m": [
+            0.18,
+            0.08,
+            0.16
+          ],
+          "placement_rule": "sampled_between_eef_start_and_goal",
+          "clearance_margin_m": 0.08,
+          "collision_policy": "forbidden_except_task_object_contact",
+          "description": "A reserved no-go band for future dynamic obstacle or second-arm occupancy tests."
+        }
+      ]
+    },
+    {
+      "scenario_id": "libero_goal_08_easy_00",
+      "task_group": "libero_goal",
+      "task_id": 8,
+      "difficulty": "easy",
+      "seed": 2040,
+      "episodes": 5,
+      "obstacles": [
+        {
+          "name": "side_block",
+          "shape": "box",
+          "size_m": [
+            0.08,
+            0.08,
+            0.1
+          ],
+          "placement_rule": "lateral_to_nominal_pick_path",
+          "clearance_margin_m": 0.04,
+          "collision_policy": "forbidden_except_task_object_contact",
+          "description": "A small block near the nominal approach path, leaving a direct but narrower route."
+        }
+      ]
+    },
+    {
+      "scenario_id": "libero_goal_08_medium_00",
+      "task_group": "libero_goal",
+      "task_id": 8,
+      "difficulty": "medium",
+      "seed": 2041,
+      "episodes": 10,
+      "obstacles": [
+        {
+          "name": "corridor_pair",
+          "shape": "box",
+          "size_m": [
+            0.07,
+            0.12,
+            0.12
+          ],
+          "placement_rule": "two_sides_of_nominal_transfer_path",
+          "clearance_margin_m": 0.06,
+          "collision_policy": "forbidden_except_task_object_contact",
+          "description": "Two obstacles form a corridor between pick and place regions."
+        }
+      ]
+    },
+    {
+      "scenario_id": "libero_goal_08_medium_01",
+      "task_group": "libero_goal",
+      "task_id": 8,
+      "difficulty": "medium",
+      "seed": 2042,
+      "episodes": 10,
+      "obstacles": [
+        {
+          "name": "target_guard",
+          "shape": "cylinder",
+          "size_m": [
+            0.05,
+            0.12
+          ],
+          "placement_rule": "near_target_region_not_overlapping_goal",
+          "clearance_margin_m": 0.06,
+          "collision_policy": "forbidden_except_task_object_contact",
+          "description": "A narrow obstacle close to the placement target tests final approach clearance."
+        }
+      ]
+    },
+    {
+      "scenario_id": "libero_goal_08_hard_00",
+      "task_group": "libero_goal",
+      "task_id": 8,
+      "difficulty": "hard",
+      "seed": 2043,
+      "episodes": 10,
+      "obstacles": [
+        {
+          "name": "blocked_straight_line",
+          "shape": "box",
+          "size_m": [
+            0.12,
+            0.08,
+            0.14
+          ],
+          "placement_rule": "center_of_nominal_pick_to_place_line",
+          "clearance_margin_m": 0.08,
+          "collision_policy": "forbidden_except_task_object_contact",
+          "description": "A central obstacle blocks the straight transfer line and requires an arcing route."
+        }
+      ]
+    },
+    {
+      "scenario_id": "libero_goal_08_hard_01",
+      "task_group": "libero_goal",
+      "task_id": 8,
+      "difficulty": "hard",
+      "seed": 2044,
+      "episodes": 10,
+      "obstacles": [
+        {
+          "name": "dynamic_reserved_band",
+          "shape": "virtual_safety_zone",
+          "size_m": [
+            0.18,
+            0.08,
+            0.16
+          ],
+          "placement_rule": "sampled_between_eef_start_and_goal",
+          "clearance_margin_m": 0.08,
+          "collision_policy": "forbidden_except_task_object_contact",
+          "description": "A reserved no-go band for future dynamic obstacle or second-arm occupancy tests."
+        }
+      ]
+    },
+    {
+      "scenario_id": "libero_goal_09_easy_00",
+      "task_group": "libero_goal",
+      "task_id": 9,
+      "difficulty": "easy",
+      "seed": 2045,
+      "episodes": 5,
+      "obstacles": [
+        {
+          "name": "side_block",
+          "shape": "box",
+          "size_m": [
+            0.08,
+            0.08,
+            0.1
+          ],
+          "placement_rule": "lateral_to_nominal_pick_path",
+          "clearance_margin_m": 0.04,
+          "collision_policy": "forbidden_except_task_object_contact",
+          "description": "A small block near the nominal approach path, leaving a direct but narrower route."
+        }
+      ]
+    },
+    {
+      "scenario_id": "libero_goal_09_medium_00",
+      "task_group": "libero_goal",
+      "task_id": 9,
+      "difficulty": "medium",
+      "seed": 2046,
+      "episodes": 10,
+      "obstacles": [
+        {
+          "name": "corridor_pair",
+          "shape": "box",
+          "size_m": [
+            0.07,
+            0.12,
+            0.12
+          ],
+          "placement_rule": "two_sides_of_nominal_transfer_path",
+          "clearance_margin_m": 0.06,
+          "collision_policy": "forbidden_except_task_object_contact",
+          "description": "Two obstacles form a corridor between pick and place regions."
+        }
+      ]
+    },
+    {
+      "scenario_id": "libero_goal_09_medium_01",
+      "task_group": "libero_goal",
+      "task_id": 9,
+      "difficulty": "medium",
+      "seed": 2047,
+      "episodes": 10,
+      "obstacles": [
+        {
+          "name": "target_guard",
+          "shape": "cylinder",
+          "size_m": [
+            0.05,
+            0.12
+          ],
+          "placement_rule": "near_target_region_not_overlapping_goal",
+          "clearance_margin_m": 0.06,
+          "collision_policy": "forbidden_except_task_object_contact",
+          "description": "A narrow obstacle close to the placement target tests final approach clearance."
+        }
+      ]
+    },
+    {
+      "scenario_id": "libero_goal_09_hard_00",
+      "task_group": "libero_goal",
+      "task_id": 9,
+      "difficulty": "hard",
+      "seed": 2048,
+      "episodes": 10,
+      "obstacles": [
+        {
+          "name": "blocked_straight_line",
+          "shape": "box",
+          "size_m": [
+            0.12,
+            0.08,
+            0.14
+          ],
+          "placement_rule": "center_of_nominal_pick_to_place_line",
+          "clearance_margin_m": 0.08,
+          "collision_policy": "forbidden_except_task_object_contact",
+          "description": "A central obstacle blocks the straight transfer line and requires an arcing route."
+        }
+      ]
+    },
+    {
+      "scenario_id": "libero_goal_09_hard_01",
+      "task_group": "libero_goal",
+      "task_id": 9,
+      "difficulty": "hard",
+      "seed": 2049,
+      "episodes": 10,
+      "obstacles": [
+        {
+          "name": "dynamic_reserved_band",
+          "shape": "virtual_safety_zone",
+          "size_m": [
+            0.18,
+            0.08,
+            0.16
+          ],
+          "placement_rule": "sampled_between_eef_start_and_goal",
+          "clearance_margin_m": 0.08,
+          "collision_policy": "forbidden_except_task_object_contact",
+          "description": "A reserved no-go band for future dynamic obstacle or second-arm occupancy tests."
+        }
+      ]
+    }
+  ],
+  "note": "This spec is the source of truth for obstacle injection, expert trajectory collection, and collision-aware evaluation."
+}

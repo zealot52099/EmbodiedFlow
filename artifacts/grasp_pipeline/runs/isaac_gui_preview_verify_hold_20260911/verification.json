@@ -1,0 +1,25 @@
+{
+  "status": "gui_preview_running_verified",
+  "timestamp": "2026-09-11T14:12:30+08:00",
+  "run_name": "isaac_gui_preview_verify_hold_20260911",
+  "workspace": "E:\\projects\\robot",
+  "process": {
+    "pid": 30792,
+    "name": "python.exe",
+    "path": "E:\\envs\\isaacsim61\\python.exe",
+    "main_window_title": "Isaac Sim Python 6.1.0",
+    "working_set_bytes": 6477406208,
+    "command_line": "\"E:\\envs\\isaacsim61\\python.exe\" E:\\projects\\robot\\scripts\\isaac_load_preview.py --scene E:\\projects\\robot\\artifacts\\grasp_pipeline\\runs\\isaac_preview_20260910\\put_bowl_on_plate_preview.usda "
+  },
+  "scene": "E:\\projects\\robot\\artifacts\\grasp_pipeline\\runs\\isaac_preview_20260910\\put_bowl_on_plate_preview.usda",
+  "validation": {
+    "launch_manifest_written": true,
+    "process_still_running_after_120_seconds": true,
+    "window_title_detected": true,
+    "nvidia_smi_process_detected": true
+  },
+  "notes": [
+    "scripts\\isaac_load_preview.py now keeps the SimulationApp update loop alive in GUI mode until the Isaac window is closed.",
+    "The visible Isaac Sim window should remain open for manual inspection of the preview scene."
+  ]
+}

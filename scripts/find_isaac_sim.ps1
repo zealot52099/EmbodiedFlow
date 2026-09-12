@@ -12,6 +12,7 @@ if ($env:ISAAC_SIM_ROOT) {
     $candidateRoots += $env:ISAAC_SIM_ROOT
 }
 $candidateRoots += @(
+    "E:\envs\isaacsim61",
     "$env:LOCALAPPDATA\ov\pkg",
     "C:\isaacsim",
     "C:\IsaacSim",
@@ -25,6 +26,21 @@ foreach ($root in $candidateRoots | Select-Object -Unique) {
         continue
     }
     $rootItem = Get-Item -LiteralPath $root
+    $pipLauncher = Join-Path $rootItem.FullName "Scripts\isaacsim.exe"
+    $pipPython = Join-Path $rootItem.FullName "python.exe"
+    if ($rootItem.PSIsContainer -and (Test-Path -LiteralPath $pipLauncher)) {
+        $launchers = @($pipLauncher)
+        if (Test-Path -LiteralPath $pipPython) {
+            $launchers += $pipPython
+        }
+        $results += [pscustomobject]@{
+            Root = $rootItem.FullName
+            InstallType = "pip"
+            Launchers = ($launchers -join ";")
+        }
+        continue
+    }
+
     $dirs = @()
     if ($rootItem.PSIsContainer -and ($rootItem.Name -match "isaac|Isaac")) {
         $dirs += $rootItem
@@ -45,6 +61,7 @@ foreach ($root in $candidateRoots | Select-Object -Unique) {
         if ($existing.Count -gt 0) {
             $results += [pscustomobject]@{
                 Root = $dir.FullName
+                InstallType = "workstation"
                 Launchers = ($existing -join ";")
             }
         }

@@ -1,0 +1,30 @@
+{
+  "status": "success",
+  "timestamp": "2026-09-11T00:57:33+08:00",
+  "run_name": "multitask_libero_full_20260911",
+  "workspace": "E:\\projects\\robot",
+  "training": {
+    "script": "scripts\\train_pi05_libero_multitask_4090.ps1",
+    "steps": 30000,
+    "batch_size": 1,
+    "checkpoint": "outputs\\pi05_libero_multitask_4090\\checkpoints\\030000\\pretrained_model",
+    "summary": "artifacts\\grasp_pipeline\\runs\\multitask_libero_full_20260911\\training_summary.json"
+  },
+  "evaluation": {
+    "script": "scripts\\eval_pi05_libero_goal_all.ps1",
+    "task_group": "libero_goal",
+    "task_ids": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+    "episodes_per_task": 10,
+    "episodes_total": 100,
+    "successes": 95,
+    "success_rate_percent": 95.0,
+    "summary": "artifacts\\grasp_pipeline\\runs\\multitask_libero_full_20260911\\eval_summary.json",
+    "eval_info": "eval_logs\\pi05_libero_multitask_goal_all_10ep\\eval_info.json",
+    "videos": "eval_logs\\pi05_libero_multitask_goal_all_10ep\\videos"
+  },
+  "next_steps": [
+    "Inspect failed rollouts for libero_goal task ids 2, 3, and 9.",
+    "Add RLinf PPO/GRPO integration scaffold now that the BC checkpoint is stable.",
+    "Push local main branch when GitHub network access is available."
+  ]
+}

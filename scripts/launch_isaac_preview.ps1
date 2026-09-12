@@ -45,11 +45,23 @@ if ($detected.Count -eq 0) {
 }
 
 $root = $detected[0].Root
+$installType = $detected[0].InstallType
 $pythonBat = Join-Path $root "python.bat"
 $isaacSimBat = Join-Path $root "isaac-sim.bat"
+$pipIsaacSim = Join-Path $root "Scripts\isaacsim.exe"
+$pipPython = Join-Path $root "python.exe"
 $loadScript = (Resolve-Path -LiteralPath ".\scripts\isaac_load_preview.py").Path
 
-if (Test-Path -LiteralPath $pythonBat) {
+if ($installType -eq "pip" -and (Test-Path -LiteralPath $pipPython)) {
+    $arguments = @($loadScript, "--scene", $scenePath)
+    if ($Headless) {
+        $arguments += @("--headless")
+    }
+    Write-Host "Launching Isaac Sim pip Python: $pipPython"
+    Write-Host "Scene: $scenePath"
+    Start-Process -FilePath $pipPython -ArgumentList $arguments -WorkingDirectory (Get-Location).Path
+    $launchMode = "isaacsim_pip_python"
+} elseif (Test-Path -LiteralPath $pythonBat) {
     $arguments = @($loadScript, "--scene", $scenePath)
     if ($Headless) {
         $arguments += "--headless"
